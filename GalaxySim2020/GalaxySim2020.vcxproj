@@ -146,9 +146,13 @@
   <ItemGroup>
     <ClCompile Include="Graphics\Window\GLWindow.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Math\Vector2f.cpp" />
+    <ClCompile Include="Math\Vector3f.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphics\Window\GLWindow.h" />
+    <ClInclude Include="Math\Vector2f.h" />
+    <ClInclude Include="Math\Vector3f.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
