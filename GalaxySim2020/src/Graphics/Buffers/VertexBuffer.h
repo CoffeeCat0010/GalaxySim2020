@@ -7,6 +7,7 @@ namespace Graphics
 	private:
 		unsigned int m_id;
 	public:
+		VertexBuffer() { m_id = 0; }
 		VertexBuffer(float* data, size_t size);
 		~VertexBuffer();
 		inline void bind() { glBindBuffer(GL_ARRAY_BUFFER, m_id); }

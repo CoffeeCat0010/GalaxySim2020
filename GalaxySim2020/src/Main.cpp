@@ -8,6 +8,7 @@
 #include "Graphics/Buffers/IndexBuffer.h"
 #include "Graphics/Buffers/VertexBuffer.h"
 #include "Graphics/Shaders/Shader.h"
+#include "Graphics/Shaders/ShaderProgram.h"
 #include "IO/GSIO.h"
 
 
@@ -28,6 +29,7 @@ int main(void)
 		glfwTerminate();
 		return -1;
 	}
+
 	float vertices[] = {
 		-0.5f,  0.5f,
 		 0.5f,  0.5f,
@@ -35,7 +37,7 @@ int main(void)
 		-0.5f, -0.5f
 	};
 
-	unsigned int elements[]{
+	uint32_t elements[] = {
 		0, 1, 2,
 		2, 3, 0
 	};
@@ -47,10 +49,11 @@ int main(void)
 	source = IO::sourceToCStr("src/Graphics/GLSL/myshader.mesh");
 	Graphics::Shader vertShader(source, Graphics::VERT);
 
-	unsigned int program = glCreateProgram();
-	glAttachShader(program, vertShader.getID());
-	glAttachShader(program, fragShader.getID());
-	glLinkProgram(program);
+	Graphics::ShaderProgram program;
+	program.addShader(&vertShader);
+	program.addShader(&fragShader);
+	program.prepareProgram();
+
 	Graphics::VertexBuffer vbo(vertices, 8 * sizeof(float));
 	Graphics::IndexBuffer ibo(elements, sizeof(elements));
 	unsigned int vao;
@@ -65,10 +68,8 @@ int main(void)
 	while (!glfwWindowShouldClose(glWindow.getWindow()))
 	{
 		/* Render here */
-	 // ibo.bind();
-		//while (glGetError() != 0);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		GL_CHECK(glUseProgram(program));
+		program.bind();
 		glBindVertexArray(vao);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);
 

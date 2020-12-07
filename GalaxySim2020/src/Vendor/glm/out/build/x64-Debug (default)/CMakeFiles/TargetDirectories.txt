@@ -1,0 +1,2 @@
+C:/Users/Justin/source/repos/GalaxySim2020/GalaxySim2020/src/Vendor/glm/out/build/x64-Debug (default)/CMakeFiles/edit_cache.dir
+C:/Users/Justin/source/repos/GalaxySim2020/GalaxySim2020/src/Vendor/glm/out/build/x64-Debug (default)/CMakeFiles/rebuild_cache.dir

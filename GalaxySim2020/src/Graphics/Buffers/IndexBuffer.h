@@ -6,6 +6,7 @@ namespace Graphics {
 	private:
 		unsigned int m_id;
 	public:
+		IndexBuffer() { m_id = 0; }
 		IndexBuffer(const unsigned int* data, size_t size);
 		~IndexBuffer();
 		inline void bind() { glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_id); }
