@@ -13,6 +13,6 @@ namespace Graphics
 		inline void bind() { glBindBuffer(GL_ARRAY_BUFFER, m_id); }
 		inline void unbind() { glBindBuffer(GL_ARRAY_BUFFER, 0); }
 
-		inline unsigned int getId() { return m_id; }
+		inline unsigned int getId() const { return m_id; }
 	};
 }

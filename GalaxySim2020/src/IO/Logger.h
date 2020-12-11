@@ -9,24 +9,32 @@
 		IO::logger* l = l->getInstance(); \
 		l->printMessage(message, IO::LOG); \
 		l = nullptr;
+	#define LOG_INFO_IF(message, cond)\
+		if(cond) {LOG_INFO(message)};
 #endif
 #if defined(LOG_VERBOSE) || defined(LOG_P3)
 	#define LOG_WARN(message) \
 		IO::logger* l = l->getInstance(); \
 		l->printMessage(message, IO::WARNING); \
 		l = nullptr;
+	#define LOG_WARN_IF(message, cond)\
+		if(cond) {LOG_WARN(message)};
 #endif
 #if defined(LOG_VERBOSE) || defined(LOG_P3) || defined (LOG_P2)
-#define LOG_ERROR(message) \
+	#define LOG_ERROR(message) \
 		IO::logger* l = l->getInstance(); \
 		l->printMessage(message, IO::ERROR); \
 		l = nullptr;
+	#define LOG_ERROR_IF(message, cond)\
+		if(cond) {LOG_ERROR(message)};
 #endif
 #if defined(LOG_VERBOSE) || defined(LOG_P3) || defined (LOG_P2) ||  defined (LOG_P1)
-#define LOG_FATAL(message) \
+	#define LOG_FATAL(message) \
 		IO::logger* l = l->getInstance(); \
 		l->printMessage(message, IO::FATAL); \
 		l = nullptr;
+	#define LOG_FATAL_IF(message, cond)\
+		if(cond) {LOG_FATAL(message)};
 #endif
 
 namespace IO

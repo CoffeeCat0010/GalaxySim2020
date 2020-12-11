@@ -115,7 +115,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC; LOG_VERBOSE; GL_LOG_ERROR</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>src\Vendor\opencl_nvidia\include;src\Vendor;$(SolutionDir)Dependencies\glfw-x64\include;$(SolutionDir)Dependencies\glew2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src\Vendor\opencl_nvidia\include;src\Vendor;$(SolutionDir)Dependencies\glfw-x64\include;$(SolutionDir)Dependencies\glew2.1.0\include;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -155,6 +156,8 @@
     <ClCompile Include="src\IO\GSIO.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Graphics\Buffers\VertexArrayObj.cpp" />
+    <ClCompile Include="src\Vendor\stb_image\stb_image.cpp" />
+    <ClCompile Include="src\Graphics\Buffers\Texture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Graphics\Renderers\BatchRenderer.h" />
@@ -170,6 +173,8 @@
     <ClInclude Include="src\Graphics\Window\GLWindow.h" />
     <ClInclude Include="src\IO\GSIO.h" />
     <ClInclude Include="src\Graphics\Buffers\VertexArrayObj.h" />
+    <ClInclude Include="src\Vendor\stb_image\stb_image.h" />
+    <ClInclude Include="src\Graphics\Buffers\Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Graphics\GLSL\myshader.frag">

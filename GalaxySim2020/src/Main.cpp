@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <CL/cl.hpp>
+#include "glm/glm.hpp"
 #include "IO/Logger.h"
 #include "IO/GL_Logger.h"
 #include "Graphics/Window/GLWindow.h"
@@ -10,6 +11,9 @@
 #include "Graphics/Shaders/Shader.h"
 #include "Graphics/Shaders/ShaderProgram.h"
 #include "IO/GSIO.h"
+#include "Graphics/Renderers/BatchRenderer.h"
+#include "Graphics/Shapes/square2D.h"
+#include "Graphics/Buffers/Texture2D.h"
 
 
 int main(void)
@@ -46,7 +50,7 @@ int main(void)
 	std::string source = IO::sourceToCStr("src/Graphics/GLSL/myshader.frag");
 	Graphics::Shader fragShader(source, Graphics::FRAG);
 
-	source = IO::sourceToCStr("src/Graphics/GLSL/myshader.mesh");
+	source = IO::sourceToCStr("src/Graphics/GLSL/myshader.vert");
 	Graphics::Shader vertShader(source, Graphics::VERT);
 
 	Graphics::ShaderProgram program;
@@ -54,24 +58,36 @@ int main(void)
 	program.addShader(&fragShader);
 	program.prepareProgram();
 
-	Graphics::VertexBuffer vbo(vertices, 8 * sizeof(float));
-	Graphics::IndexBuffer ibo(elements, sizeof(elements));
-	unsigned int vao;
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-	vbo.bind();
-	ibo.bind();
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
-	glEnableVertexAttribArray(0);
+
+
+	Graphics::BatchRenderer renderer(program);
+	Graphics::Texture2D texture("C:/Users/Justin/source/repos/GalaxySim2020/GalaxySim2020/Res/Test.png");
+	Graphics::square2D testSquare(program.getID(), 1.0f, 0.0f, 0.0f, 0.0f, &texture);
+
+	int max;
+	glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &max);
+	std::cout << max << std::endl;
+	//Graphics::VertexBuffer vbo(vertices, 8 * sizeof(float));
+	//Graphics::IndexBuffer ibo(elements, sizeof(elements));
+	//unsigned int vao;
+	//glGenVertexArrays(1, &vao);
+	//glBindVertexArray(vao);
+	//vbo.bind();
+	//ibo.bind();
+	//glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
+	//glEnableVertexAttribArray(0);
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(glWindow.getWindow()))
 	{
 		/* Render here */
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		program.bind();
+	/*	program.bind();
 		glBindVertexArray(vao);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);*/
+
+		renderer.addMesh(testSquare);
+		renderer.render();
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(glWindow.getWindow());

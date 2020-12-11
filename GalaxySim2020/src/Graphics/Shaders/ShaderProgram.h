@@ -1,5 +1,6 @@
 #pragma once
 #include <map>
+#include <utility>
 #include "../IO/GL_Logger.h"
 #include "Shader.h"
 namespace Graphics
@@ -9,7 +10,7 @@ namespace Graphics
 	{
 	private:
 		std::map<int, Shader*> m_shaders;
-		unsigned int m_id;
+		uint32_t m_id;
 	public:
 		ShaderProgram();
 		~ShaderProgram();
@@ -17,13 +18,15 @@ namespace Graphics
 		void addShader(Shader* s);
 		void removeShader(Shader* s);
 
-		void addShader(unsigned int shaderID);
-		void removeShader(unsigned int shaderID);
+	//	void addShader(unsigned int shaderID);
+	//	void removeShader(unsigned int shaderID);
 
 		void prepareProgram();
 
-		void bind() { GL_CHECK(glUseProgram(m_id)); }
-		void unbind() { glUseProgram(0); }
+
+		inline uint32_t getID() const { return m_id; };
+		inline void bind() { GL_CHECK(glUseProgram(m_id)); }
+		inline void unbind() { glUseProgram(0); }
 	};
 }
 

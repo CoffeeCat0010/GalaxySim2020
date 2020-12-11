@@ -15,6 +15,7 @@ namespace Graphics
 
 	public: 
 		VertexArrayObj(VertexBuffer* vbuf, IndexBuffer* ibuf);
+		VertexArrayObj() = default;
 		~VertexArrayObj();
 
 		/// <summary>
@@ -25,7 +26,7 @@ namespace Graphics
 		/// x, y, and z coordiates. As per the opengl specification that this is built on, only 1,2,3,4 and GL_BGRA are accepted values</param>
 		/// <param name="stride">The number of bytes that make up an entire vertex</param>
 		/// <param name="offset">The offset in bytes of this attribute from the start of a vertex</param>
-		void addAttrib(uint32_t index, uint32_t numPerAttrib, size_t stride, const void* offset);
+		void addAttrib(uint32_t index, uint32_t numPerAttrib, size_t stride, const void* offset, int type = GL_FLOAT);
 		inline void bind() { GL_CHECK(glBindVertexArray(m_id)); };
 		inline void unbind() { GL_CHECK(glBindVertexArray(0)); };
 	};

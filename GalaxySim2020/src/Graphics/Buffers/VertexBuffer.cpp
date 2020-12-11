@@ -6,7 +6,7 @@ namespace Graphics
 	{
 		glGenBuffers(1, &m_id);
 		bind();
-		glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW);
 	}
 
 	VertexBuffer::~VertexBuffer()

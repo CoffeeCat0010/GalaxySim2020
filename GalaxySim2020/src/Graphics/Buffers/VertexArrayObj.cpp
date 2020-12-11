@@ -14,13 +14,15 @@ namespace Graphics
 		GL_CHECK(glDeleteVertexArrays(1, &m_id));
 	}
 
-	void VertexArrayObj::addAttrib(uint32_t index, uint32_t numPerAttrib, size_t stride, const void* offset)
+	void VertexArrayObj::addAttrib(uint32_t index, uint32_t numPerAttrib, size_t stride, const void* offset, int type)
 	{
+		bind();
 		m_vertexBuffer->bind();
 		m_indexBuffer->bind();
-		GL_CHECK(glEnableVertexArrayAttrib(m_id, index));
+		GL_CHECK(glEnableVertexAttribArray(index));
 		GL_CHECK(glVertexAttribPointer(index, numPerAttrib, GL_FLOAT, false, stride, offset));
 		m_vertexBuffer->unbind();
 		m_indexBuffer->unbind();
+		unbind();
 	}
 }

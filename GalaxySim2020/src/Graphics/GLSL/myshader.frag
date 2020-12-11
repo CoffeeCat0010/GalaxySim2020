@@ -1,8 +1,21 @@
 #version 440 core
 
-out vec4 outcolor;
+layout (location = 0) out vec4 outcolor;
+
+in vec2 v_textureCoords;
+in flat int v_textureID;
+
+layout (location = 5) uniform sampler2D u_textures[256];
 
 void main()
 {
-	outcolor = vec4(0.5, 1.0, 0.5, 1.0);
+	if(v_textureID == -1)
+	{
+		outcolor = vec4(0.5, 1.0, 0.5, 1.0);
+	}
+	else
+	{
+		int index = v_textureID;
+		outcolor = texture(u_textures[index], v_textureCoords);
+	}
 }

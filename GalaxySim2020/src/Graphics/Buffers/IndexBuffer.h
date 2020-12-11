@@ -9,10 +9,10 @@ namespace Graphics {
 		IndexBuffer() { m_id = 0; }
 		IndexBuffer(const unsigned int* data, size_t size);
 		~IndexBuffer();
-		inline void bind() { glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_id); }
+		void bind() { glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_id); }
 		inline void unbind() { glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0); }
 
-		inline unsigned int getId() { return m_id; }
+		inline unsigned int getId() const{ return m_id; }
 	};
 }
 

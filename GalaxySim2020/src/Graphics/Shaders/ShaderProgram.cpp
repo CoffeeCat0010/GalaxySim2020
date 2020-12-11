@@ -40,5 +40,9 @@ namespace Graphics
 	void ShaderProgram::prepareProgram()
 	{
 		GL_CHECK(glLinkProgram(m_id));
+		char log[8192];
+		int len;
+		glGetProgramInfoLog(m_id, 8192, &len, log);
+		LOG_INFO(log);
 	}
 }
