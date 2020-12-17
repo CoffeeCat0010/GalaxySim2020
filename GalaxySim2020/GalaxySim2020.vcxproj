@@ -148,6 +148,7 @@
     <ClCompile Include="src\Graphics\Renderers\BatchRenderer.cpp" />
     <ClCompile Include="src\Graphics\Shapes\square2D.cpp" />
     <ClCompile Include="src\Graphics\Shaders\ShaderProgram.cpp" />
+    <ClCompile Include="src\Graphics\Window\Camera.cpp" />
     <ClCompile Include="src\IO\Logger.cpp" />
     <ClCompile Include="src\Graphics\Shaders\Shader.cpp" />
     <ClCompile Include="src\Graphics\Buffers\IndexBuffer.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="src\Graphics\Shapes\renderable.h" />
     <ClInclude Include="src\Graphics\Shapes\square2D.h" />
     <ClInclude Include="src\Graphics\Shaders\ShaderProgram.h" />
+    <ClInclude Include="src\Graphics\Window\Camera.h" />
     <ClInclude Include="src\IO\GL_Logger.h" />
     <ClInclude Include="src\IO\Logger.h" />
     <ClInclude Include="src\Graphics\Shaders\Shader.h" />
