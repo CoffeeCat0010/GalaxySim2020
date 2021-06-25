@@ -11,6 +11,9 @@
 		l = nullptr;
 	#define LOG_INFO_IF(message, cond)\
 		if(cond) {LOG_INFO(message)};
+#else
+#define LOG_INFO(message)
+#define LOG_INFO_IF(message, cond)
 #endif
 #if defined(LOG_VERBOSE) || defined(LOG_P3)
 	#define LOG_WARN(message) \
@@ -19,6 +22,9 @@
 		l = nullptr;
 	#define LOG_WARN_IF(message, cond)\
 		if(cond) {LOG_WARN(message)};
+#else
+#define LOG_WARN(message)
+#define LOG_WARN_IF(message, cond)
 #endif
 #if defined(LOG_VERBOSE) || defined(LOG_P3) || defined (LOG_P2)
 	#define LOG_ERROR(message) \
@@ -27,6 +33,9 @@
 		l = nullptr;
 	#define LOG_ERROR_IF(message, cond)\
 		if(cond) {LOG_ERROR(message)};
+#else
+#define LOG_ERROR(message)
+#define LOG_ERROR_IF(message, cond)
 #endif
 #if defined(LOG_VERBOSE) || defined(LOG_P3) || defined (LOG_P2) ||  defined (LOG_P1)
 	#define LOG_FATAL(message) \
@@ -35,6 +44,9 @@
 		l = nullptr;
 	#define LOG_FATAL_IF(message, cond)\
 		if(cond) {LOG_FATAL(message)};
+#else 
+#define LOG_FATAL(message)
+#define LOG_FATAL_IF(message, cond)
 #endif
 
 namespace IO

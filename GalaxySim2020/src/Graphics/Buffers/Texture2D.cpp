@@ -23,7 +23,10 @@ Graphics::Texture2D::Texture2D(const std::string& path)
 
 Graphics::Texture2D::~Texture2D()
 {
-	GL_CHECK(glDeleteTextures(1, &m_id));
+	if ( m_id != 0 ) {
+		// throws and invalid operation error when program is ending because GL_CHECK runs glGetError without a vaild context
+		GL_CHECK (glDeleteTextures (1, &m_id));
+	}
 }
 
 /// <summary>

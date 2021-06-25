@@ -4,8 +4,8 @@
 namespace Graphics {
 #define DEFAULT_ASP_HORIZONTAL 16
 #define DEFAULT_ASP_VERTICAL 9
-#define DEFAULT_SIZE_X 1280
-#define DEFAULT_SIZE_Y 720
+#define DEFAULT_SIZE_X 1920
+#define DEFAULT_SIZE_Y 1080
 	class GLWindow {
 	private:
 		GLFWwindow* window;

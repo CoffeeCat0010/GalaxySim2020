@@ -1,6 +1,9 @@
 #pragma once
 #include "../Primatives/vertex.h"
 #include "Graphics/Buffers/Texture2D.h"
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtx/transform.hpp"
 #include <utility>
 #include <vector>
 
@@ -20,6 +23,7 @@ namespace Graphics
 		virtual std::pair<uint32_t*, size_t> getIndexData() = 0;
 		virtual std::vector<Texture2D*> getTextures() = 0;
 		
+		virtual glm::mat4 getModelMatrix () { return glm::mat4(1.0f); };
 		virtual void onUpdate() {};
 
 	};

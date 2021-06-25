@@ -9,7 +9,7 @@ layout (location = 5) uniform sampler2D u_textures[256];
 
 void main()
 {
-	if(v_textureID == -1)
+	if(v_textureID == 0)
 	{
 		outcolor = vec4(0.5, 1.0, 0.5, 1.0);
 	}

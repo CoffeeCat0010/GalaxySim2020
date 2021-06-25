@@ -32,7 +32,7 @@ namespace Graphics
 			{
 				LOG_ERROR(" OpenGL: INVALID VALUE! Program or shader does not exist! ")
 			}
-		#elif
+		#else
 			glDetachShader(this->m_id, s->getID());
 		#endif
 		m_shaders.erase(s->getID());

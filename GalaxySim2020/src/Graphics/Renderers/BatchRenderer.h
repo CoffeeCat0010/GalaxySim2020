@@ -11,13 +11,6 @@
 
 namespace Graphics
 {
-	struct batch {
-		std::vector<vertex> m_vertices;
-		size_t m_vertArrayIndexPtr = 0;
-		std::vector<uint32_t> m_indices;
-		size_t m_indArrayIndexPtr = 0;
-		std::map<int ,Texture2D*> m_textureBinding;
-	};
 #define DEFAULT_MAX_VERTS 20000
 // The default index ratio is 3/2 because with quads there are 3 indicices for every 2 vertices. This is only a guess at a good 
 // ratio. More complex ratios might need to be explored later.
@@ -25,6 +18,15 @@ namespace Graphics
 
 	class BatchRenderer
 	{
+		struct batch {
+			std::vector<vertex> m_vertices;
+			size_t m_vertArrayIndexPtr = 0;
+			std::vector<vertex>::iterator m_vertArrayIt;
+			std::vector<uint32_t> m_indices;
+			size_t m_indArrayIndexPtr = 0;
+			std::vector<uint32_t>::iterator m_indArrayIt;
+			std::map<int ,Texture2D*> m_textureBinding;
+		};
 	private:
 		//vertex data to be stored until sent to gpu
 		std::list<batch*> batches;
@@ -34,11 +36,13 @@ namespace Graphics
 		VertexBuffer m_vertexBuf;
 		VertexArrayObj m_vao;
 		uint32_t m_shaderProgramID;
+		bool m_allowTextures;
+		glm::mat4 projMatrix;
 		//s_maxTextureUnits should be thought of as effectively const
 		static int s_maxTextureUnits;
 	public:
-		BatchRenderer(ShaderProgram& shader);
-		BatchRenderer(ShaderProgram& shader, uint32_t maxVerts, float indexRatio);
+		BatchRenderer(ShaderProgram& shader, bool allowTextures = true);
+		BatchRenderer(ShaderProgram& shader, uint32_t maxVerts, float indexRatio, bool allowTextures = true);
 		~BatchRenderer();
 		static int getMaxTextureUnits();
 		void addMesh(renderable& mesh);
@@ -51,6 +55,7 @@ namespace Graphics
 		bool hasTextureBinding(renderable& mesh, batch& batch);
 		bool canAddTextureBinding(renderable& mesh, batch& batch);
 		void addTextureBinding(renderable& mesh, batch& batch);
+		std::vector<vertex> applyModelMatrix (renderable& mesh);
 	};
 }
 
