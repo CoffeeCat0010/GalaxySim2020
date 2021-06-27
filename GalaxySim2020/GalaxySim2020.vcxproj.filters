@@ -63,10 +63,10 @@
     <ClCompile Include="src\Graphics\Shapes\Star.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Compute\CLprim\ClMemBuffer.cpp">
+    <ClCompile Include="src\Generation\Galaxy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Generation\Galaxy.cpp">
+    <ClCompile Include="src\Compute\ComputeLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -125,14 +125,30 @@
     <ClInclude Include="src\Graphics\Shapes\Star.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Compute\CLprim\ClMemBuffer.h">
+    <ClInclude Include="src\Generation\Galaxy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Generation\Galaxy.h">
+    <ClInclude Include="src\Compute\ComputeLayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Compute\CLprim\ComputeProgram.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Compute\CLprim\ComputeKernal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Layers\Layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Compute\CLprim\ComputeDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\Graphics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Graphics\GLSL\myshader.frag" />
+    <None Include="Simulations\.gitignore" />
   </ItemGroup>
 </Project>

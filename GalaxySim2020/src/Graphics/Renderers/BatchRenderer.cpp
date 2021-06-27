@@ -129,7 +129,7 @@ namespace Graphics
 			//todo create constant
 			std::vector<int> slotsUsed(256, 0);
 			auto start = b->m_textureBinding.begin ();
-			for (auto it = ++start; it != b->m_textureBinding.end() && slot < 256; ++it)
+			for (auto it = ++start; it != b->m_textureBinding.end() && slot < 32; ++it)
 			{
 				it->second->bind(slot);
 				slotsUsed[slot] = slot;
@@ -139,7 +139,7 @@ namespace Graphics
 			int texLocation = 0;
 			int projMatLocation = 0;
 			GL_CHECK(texLocation = glGetUniformLocation(m_shaderProgramID, "u_textures"));
-			GL_CHECK(glUniform1iv(texLocation, 256, slotsUsed.data()));
+			GL_CHECK(glUniform1iv(texLocation, 32, slotsUsed.data()));
 			GL_CHECK (projMatLocation = glGetUniformLocation (m_shaderProgramID, "u_projMatrix"));
 			GL_CHECK (glUniformMatrix4fv (projMatLocation, 1, GL_FALSE, &projMatrix[0][0]));
 

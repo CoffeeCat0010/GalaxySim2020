@@ -145,8 +145,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Compute\ComputeLayer.cpp" />
     <ClCompile Include="src\Generation\Galaxy.cpp" />
-    <ClCompile Include="src\Compute\CLprim\ClMemBuffer.cpp" />
     <ClCompile Include="src\Graphics\Renderers\BatchRenderer.cpp" />
     <ClCompile Include="src\Graphics\Shapes\square2D.cpp" />
     <ClCompile Include="src\Graphics\Shaders\ShaderProgram.cpp" />
@@ -165,8 +165,12 @@
     <ClCompile Include="src\Graphics\Shapes\Star.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Compute\CLprim\ComputeDevice.h" />
+    <ClInclude Include="src\Compute\CLprim\ComputeKernal.h" />
+    <ClInclude Include="src\Compute\CLprim\ComputeProgram.h" />
+    <ClInclude Include="src\Compute\ComputeLayer.h" />
     <ClInclude Include="src\Generation\Galaxy.h" />
-    <ClInclude Include="src\Compute\CLprim\ClMemBuffer.h" />
+    <ClInclude Include="src\Graphics\Graphics.h" />
     <ClInclude Include="src\Graphics\Renderers\BatchRenderer.h" />
     <ClInclude Include="src\Graphics\Primatives\vertex.h" />
     <ClInclude Include="src\Graphics\Shapes\renderable.h" />
@@ -181,12 +185,14 @@
     <ClInclude Include="src\Graphics\Window\GLWindow.h" />
     <ClInclude Include="src\IO\GSIO.h" />
     <ClInclude Include="src\Graphics\Buffers\VertexArrayObj.h" />
+    <ClInclude Include="src\Layers\Layer.h" />
     <ClInclude Include="src\Vendor\stb_image\stb_image.h" />
     <ClInclude Include="src\Graphics\Buffers\Texture2D.h" />
     <ClInclude Include="src\IO\DataFileType\StarFile.h" />
     <ClInclude Include="src\Graphics\Shapes\Star.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Simulations\.gitignore" />
     <None Include="src\Graphics\GLSL\myshader.frag">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </None>

@@ -5,7 +5,7 @@ layout (location = 0) out vec4 outcolor;
 in vec2 v_textureCoords;
 in flat int v_textureID;
 
-layout (location = 5) uniform sampler2D u_textures[256];
+layout (location = 5) uniform sampler2D u_textures[32];
 
 void main()
 {

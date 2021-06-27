@@ -3,24 +3,21 @@
 #include <iostream>
 #include <CL/cl.hpp>
 #include "glm/glm.hpp"
+#include "Graphics/Graphics.h"
 #include "IO/Logger.h"
 #include "IO/GL_Logger.h"
-#include "Graphics/Window/GLWindow.h"
-#include "Graphics/Buffers/IndexBuffer.h"
-#include "Graphics/Buffers/VertexBuffer.h"
-#include "Graphics/Shaders/Shader.h"
-#include "Graphics/Shaders/ShaderProgram.h"
-#include "IO/GSIO.h"
-#include "Graphics/Renderers/BatchRenderer.h"
-#include "Graphics/Shapes/square2D.h"
-#include "Graphics/Buffers/Texture2D.h"
+#include "IO/GSIO.h" 
 #include "IO/DataFileType/StarFile.h"
-#include "Graphics/Shapes/Star.h"
 #include "Generation/Galaxy.h"
 #include <chrono>
+#include<memory>
+#include "Compute/CLprim/ComputeKernal.h"
+#include "Compute/CLprim/ComputeProgram.h"
 
-#define NUM_OF_STARS 49152
-#define NUM_TIME_STEPS 10000
+#define NUM_OF_STARS 1024
+//49152
+#define NUM_TIME_STEPS 500
+//10000
 
 cl_context getOCLContext();
 cl_device_id getDeviceId (cl_context& context); 
@@ -43,10 +40,12 @@ int main ()
 		cl_device_id dID = getDeviceId (con);
 
 		cl_command_queue clcq = createCommandQueue (con, dID);
-		cl_program clProgram = createProgram (con, dID, "src/Compute/Kernels/PhysKernel.cl");
-
+		
+		//cl_program clProgram = createProgram (con, dID, "src/Compute/Kernels/PhysKernel.cl");
+		std::unique_ptr<Compute::Program> program = Compute::Program::createProgram ("src/Compute/Kernels/PhysKernel.cl", con, dID);
+		std::unique_ptr<Compute::Kernel> kern = Compute::Kernel::createKernel (program->getProgramID (), "calcPos");
 		cl_int err;
-		cl_kernel kern = clCreateKernel (clProgram, "calcPos", &err);
+		//cl_kernel kern = clCreateKernel (program->getProgramID(), "calcPos", &err);
 
 		Physics::Galaxy galaxy1 (NUM_OF_STARS / 2, cl_float3{ 0.0f, -3000.0f, -5000.0f }, glm::vec3 (0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 5.0f, 0.0f ), 2000.f, 150000000.f);
 		Physics::Galaxy galaxy2 (NUM_OF_STARS / 2, cl_float3{ 0.0f, 3000.0f, -5000.0f }, glm::vec3 (0.0f, 0.5f, 0.0f), glm::vec3 (5.0f, -5.0f, 0.0f), 2000.f, 150000000.f);
@@ -55,6 +54,7 @@ int main ()
 		cl_float3* stars = new cl_float3[NUM_OF_STARS];
 		/*{ { 0.0f, 0.0f, -15.0f }, { 1.0f, 0.0f, -15.0f },
 																			{0.0f, 1.0f, -15.0f}, {0.0f, 0.0f, -16.0f},
+																			
 																			{1.0f, 1.0f, -15.0f}, {1.0f, 0.0f, -16.0f},
 																			{0.0f, 1.0f, -16.0f}, {1.0f, 1.0f, -16.0f} };*/
 		cl_float3* starVelocities = new cl_float3[NUM_OF_STARS];
@@ -85,14 +85,14 @@ int main ()
 
 		float softeningFactor = 100.0f;
 		float timeStep = 75000 * 3.154e+07;
-		IO::StarFile* file = IO::StarFile::createFile ("C:/Users/justi/Simulations/testFile.STAR", NUM_OF_STARS);
+		IO::StarFile* file = IO::StarFile::createFile ("Simulations/testFile.STAR", NUM_OF_STARS);
 		for ( int i = 0; i < NUM_TIME_STEPS; i++ ) {
-			err = clSetKernelArg (kern, 0, sizeof (cl_mem), &buffers[0]);
-			err |= clSetKernelArg (kern, 1, sizeof (cl_mem), &buffers[1]);
-			err |= clSetKernelArg (kern, 2, sizeof (float), &softeningFactor);
-			err |= clSetKernelArg (kern, 3, sizeof (float), &timeStep);
-			err |= clSetKernelArg (kern, 4, sizeof (cl_mem), &buffers[2]);
-			err |= clSetKernelArg (kern, 5, sizeof (cl_mem), &buffers[3]);
+			err = clSetKernelArg (kern->getKernel(), 0, sizeof (cl_mem), &buffers[0]);
+			err |= clSetKernelArg (kern->getKernel (), 1, sizeof (cl_mem), &buffers[1]);
+			err |= clSetKernelArg (kern->getKernel(), 2, sizeof (float), &softeningFactor);
+			err |= clSetKernelArg (kern->getKernel(), 3, sizeof (float), &timeStep);
+			err |= clSetKernelArg (kern->getKernel(), 4, sizeof (cl_mem), &buffers[2]);
+			err |= clSetKernelArg (kern->getKernel(), 5, sizeof (cl_mem), &buffers[3]);
 
 			if ( err != CL_SUCCESS ) {
 				std::cout << "Couldn't upload kernel args!" << std::endl;
@@ -101,7 +101,7 @@ int main ()
 			size_t globalWorkSize = NUM_OF_STARS;
 			size_t localWorkSize = 1;
 
-			err = clEnqueueNDRangeKernel (clcq, kern, 1, 0, &globalWorkSize, &localWorkSize, 0, NULL, NULL);
+			err = clEnqueueNDRangeKernel (clcq, kern->getKernel (), 1, 0, &globalWorkSize, &localWorkSize, 0, NULL, NULL);
 			if ( err != CL_SUCCESS ) {
 				std::cout << "Couldn't execute Kernel!" << std::endl;
 			}
@@ -125,14 +125,14 @@ int main ()
 		clReleaseMemObject (buffers[1]);
 		clReleaseMemObject (buffers[2]);
 		clReleaseMemObject (buffers[3]);
-		clReleaseProgram (clProgram);
+		//clReleaseProgram (clProgram);
 		clReleaseCommandQueue (clcq);
 		clReleaseDevice (dID);
 		clReleaseContext (con);
 	}
-	IO::StarFile* rFile = IO::StarFile::readFile ("C:/Users/justi/Simulations/testFile.STAR");
+	IO::StarFile* rFile = IO::StarFile::readFile ("Simulations/testFile.STAR");
 
-	Graphics::GLWindow glWindow = Graphics::GLWindow ("Test", true);
+	Graphics::GLWindow glWindow = Graphics::GLWindow ("Test", false);
 	glfwSetInputMode (glWindow.getWindow (), GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 	glWindow.setCurrContext ();
 	{
@@ -161,7 +161,7 @@ int main ()
 		Graphics::BatchRenderer renderer (program);
 		Graphics::Texture2D texture ("Res/Test.png");
 		//Graphics::square2D testSquare(program.getID(), 1.0f, 0.0f, 0.0f, 0.0f, &texture);
-
+		LOG_INFO (std::to_string(renderer.getMaxTextureUnits ()));
 		int max;
 		glGetIntegerv (GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &max);
 		std::cout << max << std::endl;
@@ -306,13 +306,13 @@ cl_device_id getDeviceId (cl_context& context)
 	if ( err ) std::cout << "Something went wrong! Error Number: " << err << std::endl;
 	deviceIds = new cl_device_id[sizeof (cl_device_id) * numDevices];
 	err = clGetContextInfo (context, CL_CONTEXT_DEVICES, numDevices, deviceIds, NULL);
+	cl_uint maxDiminsion;
 	for ( int i = 0; i < numDevices / sizeof(cl_device_id); i++ ) {
 		size_t size;
 		char* deviceName;
 		char* deviceVendorName;
 		char* deviceVersion;
 		cl_uint computeUnits;
-		cl_uint maxDiminsion;
 		size_t* maxWorkItemSize;
 
 		err = clGetDeviceInfo (deviceIds[i], CL_DEVICE_NAME, 0, nullptr, &size);
@@ -336,11 +336,11 @@ cl_device_id getDeviceId (cl_context& context)
 		err = clGetDeviceInfo (deviceIds[i], CL_DEVICE_MAX_COMPUTE_UNITS, sizeof (cl_uint), &computeUnits, NULL);
 		if ( err ) std::cout << "Something went wrong! Error Number: " << err << std::endl;
 
-		err = clGetDeviceInfo (deviceIds[i], CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS, size, &maxDiminsion, NULL);
+		err = clGetDeviceInfo (deviceIds[i], CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS, sizeof(cl_uint), &maxDiminsion, NULL);
 		if ( err ) std::cout << "Something went wrong! Error Number: " << err << std::endl;
 
 		maxWorkItemSize = (size_t*)malloc (sizeof (size_t) * maxDiminsion);
-		err = clGetDeviceInfo (deviceIds[i], CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS, size, maxWorkItemSize, NULL);
+		err = clGetDeviceInfo (deviceIds[i], CL_DEVICE_MAX_WORK_ITEM_SIZES, sizeof (size_t) * maxDiminsion, maxWorkItemSize, NULL);
 		if ( err ) std::cout << "Something went wrong! Error Number: " << err << std::endl;
 
 		std::cout << i + 1 << ":" << "Device: " << deviceName << " Vendor: " << deviceVendorName << std::endl;
