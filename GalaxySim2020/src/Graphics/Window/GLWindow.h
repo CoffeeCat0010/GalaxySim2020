@@ -1,6 +1,7 @@
 #pragma once
+#include "Corepch.h"
 #include <GLFW/glfw3.h>
-#include <string>
+
 namespace Graphics {
 #define DEFAULT_ASP_HORIZONTAL 16
 #define DEFAULT_ASP_VERTICAL 9

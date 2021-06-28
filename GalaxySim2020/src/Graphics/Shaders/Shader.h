@@ -1,6 +1,6 @@
 #pragma once
+#include "Corepch.h"
 #include <GL/glew.h>
-#include <string>
 namespace Graphics
 {
 	enum SHADER_TYPE

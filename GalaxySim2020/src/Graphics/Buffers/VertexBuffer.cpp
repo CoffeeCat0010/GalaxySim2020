@@ -1,3 +1,4 @@
+#include "Corepch.h"
 #include "VertexBuffer.h"
 
 namespace Graphics

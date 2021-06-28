@@ -1,3 +1,4 @@
+#include "Corepch.h"
 #include "Logger.h"
 #include <chrono>
 #include <ctime>

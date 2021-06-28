@@ -1,6 +1,5 @@
 #pragma once
-#include <glm/glm.hpp>
-#include <vector>
+#include "Corepch.h"
 #include "renderable.h"
 #include "../Primatives/vertex.h"
 namespace Graphics

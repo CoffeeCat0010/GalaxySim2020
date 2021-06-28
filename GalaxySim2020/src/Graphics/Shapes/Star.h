@@ -1,7 +1,6 @@
 #pragma once
+#include "Corepch.h"
 #include "renderable.h"
-#include <vector>
-#include "glm/glm.hpp"
 namespace Graphics
 {
 	class Star : public renderable

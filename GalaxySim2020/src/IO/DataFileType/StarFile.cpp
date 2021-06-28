@@ -1,3 +1,5 @@
+
+#include "Corepch.h"
 #include "StarFile.h"
 
 namespace IO

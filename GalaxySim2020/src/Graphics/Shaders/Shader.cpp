@@ -1,6 +1,6 @@
+#include "Corepch.h"
 #include <GL/glew.h>
-#include <iostream>
-#include "../IO/Logger.h"
+#include "IO/Logger.h"
 #include "Shader.h"
 
 namespace Graphics

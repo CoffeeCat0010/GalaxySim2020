@@ -1,3 +1,4 @@
+#include "Corepch.h"
 #include "IndexBuffer.h"
 namespace Graphics {
 	IndexBuffer::IndexBuffer(const unsigned int* data, size_t size)

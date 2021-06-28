@@ -1,6 +1,6 @@
 #pragma once
+#include "Corepch.h"
 #include <fstream>
-#include <string>
 
 #define LOG_PATH "log/"
 

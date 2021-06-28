@@ -1,12 +1,10 @@
 #pragma once
-#include <list>
-#include <vector>
-#include <map>
-#include "../Graphics/Primatives/vertex.h"
-#include "../Graphics/Shapes/renderable.h"
-#include "../Graphics/Buffers/VertexArrayObj.h"
-#include "../Graphics/Buffers/IndexBuffer.h"
-#include "../Graphics/Buffers/VertexBuffer.h"
+#include "Corepch.h"
+#include "Graphics/Primatives/vertex.h"
+#include "Graphics/Shapes/renderable.h"
+#include "Graphics/Buffers/VertexArrayObj.h"
+#include "Graphics/Buffers/IndexBuffer.h"
+#include "Graphics/Buffers/VertexBuffer.h"
 #include "Graphics/Shaders/ShaderProgram.h"
 
 namespace Graphics

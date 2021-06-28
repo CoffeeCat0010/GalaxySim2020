@@ -1,3 +1,4 @@
+#include "Corepch.h"
 #include "GLWindow.h"
 namespace Graphics {
 	GLWindow::GLWindow(std::string title, bool fullscreen)

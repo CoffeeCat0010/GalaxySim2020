@@ -1,6 +1,6 @@
 #pragma once
-#include <map>
-#include <utility>
+
+#include "Corepch.h"
 #include "../IO/GL_Logger.h"
 #include "Shader.h"
 namespace Graphics

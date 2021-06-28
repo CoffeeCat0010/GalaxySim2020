@@ -1,8 +1,7 @@
 #pragma once
-#include <string>
+#include "Corepch.h"
 #include <fstream>
 #include "CL/cl.hpp"
-#include "glm/glm.hpp"
 
 namespace IO
 {

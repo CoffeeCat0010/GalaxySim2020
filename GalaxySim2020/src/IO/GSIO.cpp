@@ -1,5 +1,5 @@
+#include "Corepch.h"
 #include "GSIO.h"
-#include <iostream>
 #include <fstream>
 
 namespace IO

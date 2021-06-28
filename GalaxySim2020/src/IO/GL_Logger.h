@@ -1,7 +1,6 @@
 #pragma once
+#include "Corepch.h"
 #include <GL/glew.h>
-#include <stdlib.h>
-#include <string>
 
 #include "logger.h"		
 		

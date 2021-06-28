@@ -1,7 +1,7 @@
+#include "Corepch.h"
 #include "BatchRenderer.h"
 #include <algorithm>
 #include <limits>
-#include <vector>
 #include "IO/GL_Logger.h"
 #include "IO/Logger.h"
 

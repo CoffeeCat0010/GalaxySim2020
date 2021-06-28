@@ -1,4 +1,5 @@
 #pragma once
+#include "Corepch.h"
 #include "GL/glew.h"
 namespace Graphics {
 	class IndexBuffer

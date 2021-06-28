@@ -1,7 +1,6 @@
 #pragma once
-#include <vector>
-#include "glm/glm.hpp"
-#include"CL/cl.hpp"
+#include "Corepch.h"
+#include "CL/cl.hpp"
 
 #define G 4.300E-03f// (pc/solarMass) * (km/s)^2 
 #define KM_PER_PARSEC 3.086E+13f

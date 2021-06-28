@@ -1,3 +1,4 @@
+#include "Corepch.h"
 #include "Star.h"
 namespace Graphics
 {

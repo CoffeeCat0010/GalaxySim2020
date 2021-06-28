@@ -1,11 +1,7 @@
 #pragma once
+#include "Corepch.h"
 #include "../Primatives/vertex.h"
 #include "Graphics/Buffers/Texture2D.h"
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtx/transform.hpp"
-#include <utility>
-#include <vector>
 
 namespace Graphics
 {

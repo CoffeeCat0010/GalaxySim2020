@@ -1,10 +1,8 @@
+#include "Corepch.h"
 #include "Galaxy.h"
 #include <random>
 #include <ctime>
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtx/euler_angles.hpp"
-#include "glm/gtx/transform.hpp"
 namespace Physics
 {
 	Galaxy::Galaxy (int numStars, cl_float3 galaxyPos, glm::vec3 axisOfRotation, glm::vec3 velocity,float radius, float centerMass)
