@@ -181,7 +181,8 @@
     <ClInclude Include="src\Compute\CLprim\ComputeProgram.h" />
     <ClInclude Include="src\Compute\ComputeLayer.h" />
     <ClInclude Include="src\Corepch.h" />
-    <ClInclude Include="src\Event\Event.h" />
+    <ClInclude Include="src\Event\BaseClasses\Events.h" />
+    <ClInclude Include="src\Event\BaseClasses\EventHandlers.h" />
     <ClInclude Include="src\Generation\Galaxy.h" />
     <ClInclude Include="src\Graphics\Graphics.h" />
     <ClInclude Include="src\Graphics\Renderers\BatchRenderer.h" />
