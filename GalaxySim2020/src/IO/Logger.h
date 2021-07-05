@@ -29,7 +29,7 @@
 #if defined(LOG_VERBOSE) || defined(LOG_P3) || defined (LOG_P2)
 	#define LOG_ERROR(message) \
 		IO::logger* l = l->getInstance(); \
-		l->printMessage(message, IO::ERROR); \
+		l->printMessage(message, IO::ERR); \
 		l = nullptr;
 	#define LOG_ERROR_IF(message, cond)\
 		if(cond) {LOG_ERROR(message)};
@@ -53,7 +53,7 @@ namespace IO
 {
 	enum PRIORITY
 	{
-		LOG = 0, WARNING = 1, ERROR = 2, FATAL = 3
+		LOG = 0, WARNING = 1, ERR = 2, FATAL = 3
 	};
 	class logger
 	{

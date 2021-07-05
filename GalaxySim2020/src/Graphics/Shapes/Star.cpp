@@ -29,6 +29,7 @@ namespace Graphics
 	std::vector<Texture2D*> Star::getTextures ()
 	{
 		return m_emptyTextures;
+		
 	}
 	glm::mat4 Star::getModelMatrix ()
 	{

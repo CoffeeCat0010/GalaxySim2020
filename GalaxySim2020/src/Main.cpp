@@ -145,7 +145,6 @@ int main ()
 		}
 
 
-
 		std::string source = IO::sourceToCStr ("src/Graphics/GLSL/myshader.frag");
 		Graphics::Shader fragShader (source, Graphics::FRAG);
 

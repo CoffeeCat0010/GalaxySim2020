@@ -155,7 +155,25 @@
     <ClInclude Include="src\Event\BaseClasses\EventHandlers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Event\BaseClasses\Events.h">
+    <ClInclude Include="src\Event\BaseClasses\Event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Event\MouseEvents.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\MVec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Event\KeyEvents.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Event\KeyEventHandlers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Event\MouseEventHandlers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Event\BaseClasses\EventDispatcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
