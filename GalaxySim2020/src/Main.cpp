@@ -132,10 +132,10 @@ int main ()
 		clReleaseContext (con);
 	}
 	IO::StarFile* rFile = IO::StarFile::readFile ("Simulations/testFile.STAR");
-
-	Graphics::GLWindow glWindow = Graphics::GLWindow ("Test", false);
+	std::shared_ptr<Application::EventDispatcher> dispatcher (new Application::EventDispatcher ());
+	Graphics::GLWindow glWindow = Graphics::GLWindow ("Test", dispatcher, false);
 	glfwSetInputMode (glWindow.getWindow (), GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-	glWindow.setCurrContext ();
+	glWindow.makeOGLContextCurrent ();
 	{
 		// Init GLEW and check if init is sucessful 
 		GLenum glewError = glewInit ();
@@ -190,10 +190,10 @@ int main ()
 				}
 				renderer.render ();
 				/* Swap front and back buffers */
-				glfwSwapBuffers (glWindow.getWindow ());
+				glWindow.swapBuffers();
 
 				/* Poll for and process events */
-				glfwPollEvents ();
+				glWindow.pollEvents ();
 				dt = 0;
 				gTimeStep++;
 			}

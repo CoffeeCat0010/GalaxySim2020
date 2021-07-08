@@ -3,6 +3,14 @@
 namespace Application
 {
 	// This is here mostly to decouple from the glm library. I want to limit use of glm in case I decide to change libraries.
+	struct Vec2i
+	{
+		union
+		{
+			struct { int32_t x, y; };
+			std::pair<int32_t, int32_t> component;
+		};
+	};
 	struct Vec2f
 	{
 		union
