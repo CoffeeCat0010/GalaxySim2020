@@ -67,11 +67,11 @@
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <QtInstall>5.15.2_msvc2019_64</QtInstall>
-    <QtModules>core;gui</QtModules>
+    <QtModules>core;gui;opengl;widgets</QtModules>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <QtInstall>5.15.2_msvc2019_64</QtInstall>
-    <QtModules>core;gui</QtModules>
+    <QtModules>core;gui;opengl;widgets</QtModules>
   </PropertyGroup>
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
     <Import Project="$(QtMsBuild)\qt.props" />
@@ -161,6 +161,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Graphics\GUI Components\QtMainWindow.cpp" />
     <ClCompile Include="src\Graphics\Window\QtWindow.cpp" />
     <ClCompile Include="src\Graphics\Renderers\BatchRenderer.cpp" />
     <ClCompile Include="src\Graphics\Window\Camera.cpp" />
@@ -183,6 +184,7 @@
     <ClCompile Include="src\Vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="src\Graphics\GUI Components\QtMainWindow.h" />
     <ClInclude Include="src\Graphics\Window\QtWindow.h" />
     <ClInclude Include="src\Graphics\Renderers\BatchRenderer.h" />
     <ClInclude Include="src\Graphics\Window\Camera.h" />
@@ -235,6 +237,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="src\Graphics\GUI Components\QtMainWindow.ui" />
     <QtUic Include="src\Windows\untitled.ui" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
