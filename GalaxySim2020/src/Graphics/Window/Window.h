@@ -13,6 +13,7 @@ namespace Graphics
 		IWindow(int32_t sizeX, int32_t sizeY, std::shared_ptr<Application::EventDispatcher> dispatcher)
 			: m_windowDim ({sizeX, sizeY}), m_eventDis(dispatcher)
 		{}
+		virtual bool init () { return true; }
 		virtual Application::Vec2i& getWindowDimensions () { return m_windowDim; }
 		/// <summary>
 		/// This polls the events from the windowing system and sends them to the dispatcher

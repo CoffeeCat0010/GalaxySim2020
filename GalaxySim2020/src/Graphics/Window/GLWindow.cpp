@@ -10,6 +10,16 @@ namespace Graphics {
 	GLFWwindow* GLWindow::getWindow() {
 		return window;
 	}
+	bool GLWindow::init ()
+	{
+		if ( !glfwInit () )
+		{
+			LOG_FATAL ("GLFW failed to intialize!");
+			return false;
+		}
+		LOG_INFO ("Intializing GLFW...");
+		return true;
+	}
 	void GLWindow::pollEvents ()
 	{
 		glfwPollEvents ();

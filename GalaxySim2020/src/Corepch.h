@@ -23,3 +23,9 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
+
+#include "IO/Logger.h"
+#include "IO/GL_Logger.h"
+
+//Defines
+#define BIT(x) 1 << x

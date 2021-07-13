@@ -1,9 +1,9 @@
 #pragma once
-
+#include <GL/glew.h>
 #include <QMainWindow>
 #include <QtGui>
-#include "../Window/Window.h"
-#include "../Window/OpenglContext.h"
+#include "Graphics/Window/Window.h"
+#include "Graphics/Window/OpenglContext.h"
 #include "ui_QtMainWindow.h"
 
 namespace QUI

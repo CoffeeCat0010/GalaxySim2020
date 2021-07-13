@@ -5,22 +5,27 @@ namespace Application
 {
 	enum class EventType
 	{
-		None = 0, 
+		None = 0,
 		// raw input
-		MousePressed, MouseReleased, MouseScrolled, 
+		MousePressed, MouseReleased, MouseScrolled,
 		ModifiedKeyPressed, KeyPressed, KeyReleased,
 		// GUI input
 		ButtonPressed, ButtonReleased,
-		Hover, Drag, 
+		Hover, Drag,
+
+		//App events
+		close, configurationUpdated,
 	};
 
 	enum EventCategory
 	{
 		None = 0,
-	  CatInputEvent = 1 << 0,
-		CatKeyEvent = 1 << 1,
-		CatMouseEvent = 1 << 2,
-		CatGUIEvent = 1 << 3
+	  CatInputEvent = BIT(0),
+		CatKeyEvent = BIT(1),
+		CatMouseEvent = BIT(2),
+		CatGUIEvent = BIT(3),
+		CatAppEvent = BIT(4)
+
 	};
 
 	/// <summary>
@@ -34,7 +39,7 @@ namespace Application
 		EventCat m_eventCategory;
 		bool m_isHandled;
 		Event (EventType eventType, EventCat eventCategory)
-			: m_eventType (eventType), m_eventCategory (eventCategory)
+			: m_eventType (eventType), m_eventCategory (eventCategory), m_isHandled(false)
 		{}
 	public:
 		virtual EventType getEventType () const = 0;

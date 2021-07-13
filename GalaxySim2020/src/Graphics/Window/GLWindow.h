@@ -1,4 +1,5 @@
 #pragma once
+#include <GL/glew.h>
 #include "Corepch.h"
 #include <GLFW/glfw3.h>
 #include "Window.h"
@@ -18,6 +19,7 @@ namespace Graphics {
 	public:
 		GLWindow(std::string title, std::shared_ptr<Application::EventDispatcher> dispatcher, int32_t sizeX = DEFAULT_SIZE_X, int32_t sizeY = DEFAULT_SIZE_Y, bool fullscreen = false);
 		GLFWwindow* getWindow();
+		bool init () override;
 		void pollEvents () override;
 		void makeOGLContextCurrent () override;
 		void paint () override;
