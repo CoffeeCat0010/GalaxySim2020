@@ -17,7 +17,7 @@
 
 #define NUM_OF_STARS 1024
 //49152
-#define NUM_TIME_STEPS 500
+#define NUM_TIME_STEPS 5000
 //10000
 
 cl_context getOCLContext();
@@ -190,7 +190,7 @@ int main ()
 				}
 				renderer.render ();
 				/* Swap front and back buffers */
-				glWindow.swapBuffers();
+				glWindow.paint();
 
 				/* Poll for and process events */
 				glWindow.pollEvents ();

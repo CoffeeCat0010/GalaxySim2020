@@ -20,7 +20,7 @@ namespace Graphics {
 		GLFWwindow* getWindow();
 		void pollEvents () override;
 		void makeOGLContextCurrent () override;
-		void swapBuffers () override;
+		void paint () override;
 
 	};
 }

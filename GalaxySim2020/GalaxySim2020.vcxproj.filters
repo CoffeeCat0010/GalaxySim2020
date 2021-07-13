@@ -25,11 +25,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Form Files">
-      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
-      <Extensions>ui</Extensions>
-      <ParseFiles>true</ParseFiles>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Graphics\Renderers\BatchRenderer.cpp">
@@ -92,8 +87,8 @@
     <ClCompile Include="src\Graphics\Window\QtWindow.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Graphics\GUI Components\QtMainWindow.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Graphics\GUI Components\QtGui\QtMainWindow.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -199,13 +194,16 @@
     <ClInclude Include="src\Graphics\Primatives\vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Graphics\Window\OpenglContext.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\Graphics\Window\QtWindow.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Graphics\Window\Window.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Graphics\Window\OpenglContext.h">
+    <ClInclude Include="src\Graphics\GUI Components\SceneBase.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -215,14 +213,14 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="src\Windows\untitled.ui" />
-    <QtUic Include="src\Graphics\GUI Components\QtMainWindow.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
+    <None Include=".editorconfig" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="src\Graphics\GUI Components\QtMainWindow.h">
-      <Filter>Header Files</Filter>
+    <QtMoc Include="src\Graphics\GUI Components\QtGui\QtMainWindow.h">
+      <Filter>Generated Files</Filter>
     </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="src\Graphics\GUI Components\QtGui\QtMainWindow.ui" />
   </ItemGroup>
 </Project>

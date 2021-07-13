@@ -19,7 +19,7 @@ namespace Graphics
 		/// <summary>
 		/// swaps the buffers to display the scene
 		/// </summary>
-		virtual void swapBuffers () = 0;
+		virtual void paint () = 0;
 		virtual float getAspectRatio () { return (float)(m_contextDim.x / m_contextDim.y); }
 	};
 }

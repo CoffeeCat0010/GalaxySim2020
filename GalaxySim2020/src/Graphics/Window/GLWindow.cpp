@@ -19,7 +19,7 @@ namespace Graphics {
 		if ( !window ) return;
 		glfwMakeContextCurrent (window); 
 	}
-	void GLWindow::swapBuffers ()
+	void GLWindow::paint()
 	{
 		glfwSwapBuffers (window);
 	}
