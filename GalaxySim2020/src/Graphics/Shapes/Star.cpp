@@ -11,11 +11,13 @@ namespace Graphics
 	{
 		m_pos = newPos;
 		m_translationMat = glm::translate (m_pos);
+		//m_modelMatrix = m_translationMat * m_rotationMat * m_scalarMat;
 	}
 	void Star::setScalar (float scalar)
 	{
 		m_scalar = scalar;
 		m_scalarMat = glm::scale (glm::vec3 (scalar, scalar, scalar));
+		//m_modelMatrix = m_translationMat * m_rotationMat * m_scalarMat;
 	}
 
 	std::pair<vertex*, size_t> Star::getVertexData ()

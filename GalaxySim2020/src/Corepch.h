@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <functional>
 #include <memory>
+#include <mutex>
+#include <thread>
 #include <iostream>
 
 #include <string>

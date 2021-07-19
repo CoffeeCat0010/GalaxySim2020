@@ -7,6 +7,6 @@ namespace Application
 	class EventHandler
 	{
 	public:
-		virtual void onEvent (Event& e) = 0;
+		virtual void onEvent (Event* e) = 0;
 	};
 }

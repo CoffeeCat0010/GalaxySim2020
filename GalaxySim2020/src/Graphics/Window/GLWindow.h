@@ -17,7 +17,7 @@ namespace Graphics {
 		std::string title;
 		
 	public:
-		GLWindow(std::string title, std::shared_ptr<Application::EventDispatcher> dispatcher, int32_t sizeX = DEFAULT_SIZE_X, int32_t sizeY = DEFAULT_SIZE_Y, bool fullscreen = false);
+		GLWindow(std::string title, int32_t sizeX = DEFAULT_SIZE_X, int32_t sizeY = DEFAULT_SIZE_Y, bool fullscreen = false);
 		GLFWwindow* getWindow();
 		bool init () override;
 		void pollEvents () override;

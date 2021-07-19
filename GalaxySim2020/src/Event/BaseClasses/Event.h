@@ -33,11 +33,13 @@ namespace Application
 	/// </summary>
 	class Event
 	{
+	private:
+		bool m_isHandled;
 	protected: 
 		typedef uint64_t EventCat;
+		std::mutex m_mutex;
 		EventType m_eventType;
 		EventCat m_eventCategory;
-		bool m_isHandled;
 		Event (EventType eventType, EventCat eventCategory)
 			: m_eventType (eventType), m_eventCategory (eventCategory), m_isHandled(false)
 		{}
@@ -49,7 +51,16 @@ namespace Application
 		virtual std::string toString () const { return getName (); }
 		#endif // DEBUG
 
-		inline void handle () { m_isHandled = true; }
-		inline bool isHandled () { return m_isHandled; }
+		inline void handle () {
+			m_mutex.lock();
+			m_isHandled = true;
+			m_mutex.unlock();
+		}
+		inline bool isHandled () { 
+			m_mutex.lock();
+			bool result = m_isHandled;
+			m_mutex.unlock();
+			return result;
+			}
 	};
 }

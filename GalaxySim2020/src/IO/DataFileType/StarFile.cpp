@@ -42,11 +42,12 @@ namespace IO
 
 	void StarFile::readTimeStep (glm::vec3 * data, size_t numElementsInBuf)
 	{
-		for ( int i = 0; i < m_header.m_numStars; ++i ) {
+		/*for ( int i = 0; i < m_header.m_numStars; ++i ) {
 			m_stream->read ((char*)&(data[i].x), sizeof (float));
 			m_stream->read ((char*)&(data[i].y), sizeof (float));
 			m_stream->read ((char*)&(data[i].z), sizeof (float));
-		}
+		}*/
+		m_stream->read ((char*)&(data->x), m_header.m_numStars * 3 * sizeof (float));
 	}
 
 

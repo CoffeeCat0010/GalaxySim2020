@@ -11,13 +11,12 @@
 #include "IO/DataFileType/StarFile.h"
 #include "Generation/Galaxy.h"
 #include <chrono>
-#include<memory>
 #include "Compute/CLprim/ComputeKernal.h"
 #include "Compute/CLprim/ComputeProgram.h"
 
-#define NUM_OF_STARS 1024
+#define NUM_OF_STARS 49152 // 1024
 //49152
-#define NUM_TIME_STEPS 5000
+#define NUM_TIME_STEPS 10000 //5000
 //10000
 
 cl_context getOCLContext();
@@ -131,9 +130,8 @@ int main ()
 		clReleaseDevice (dID);
 		clReleaseContext (con);
 	}
-	IO::StarFile* rFile = IO::StarFile::readFile ("Simulations/testFile.STAR");
-	std::shared_ptr<Application::EventDispatcher> dispatcher (new Application::EventDispatcher ());
-	Graphics::GLWindow glWindow = Graphics::GLWindow ("Test", dispatcher, false);
+	IO::StarFile* rFile = IO::StarFile::readFile ("C:/Users/justi/Simulations/testFile.STAR");
+	Graphics::GLWindow glWindow = Graphics::GLWindow ("Test", false);
 	glfwSetInputMode (glWindow.getWindow (), GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 	glWindow.makeOGLContextCurrent ();
 	{

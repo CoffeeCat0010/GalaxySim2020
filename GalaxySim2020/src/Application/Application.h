@@ -2,7 +2,7 @@
 #include "Corepch.h"
 #include "Graphics/Window/Window.h"
 #include "Graphics/Window/OpenglContext.h"
-#include "Event/BaseClasses/EventDispatcher.h"
+#include "Event/EventDispatcher.h"
 namespace Application
 {
 	struct Configuration

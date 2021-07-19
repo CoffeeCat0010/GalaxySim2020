@@ -11,27 +11,27 @@ namespace Application
 	/// </summary>
 	class KeyEventHandler : public EventHandler
 	{
-		virtual void onEvent (Event& e) override
+		virtual void onEvent (Event* e) override
 		{
-			if ( e.getEventCategory () & EventCategory::CatKeyEvent )
-				switch ( e.getEventType())
+			if ( e->getEventCategory () & EventCategory::CatKeyEvent )
+				switch ( e->getEventType())
 				{
 					case EventType::KeyPressed:
-						onKeyPressed (dynamic_cast<KeyPressedEvent&>(e));
-						if ( e.isHandled () ) 
+						onKeyPressed (dynamic_cast<KeyPressedEvent*>(e));
+						if ( e->isHandled () )
 							break;
 					case EventType::KeyReleased:
-						onKeyReleased (dynamic_cast<KeyReleasedEvent&>(e));
-						if ( e.isHandled () )
+						onKeyReleased (dynamic_cast<KeyReleasedEvent*>(e));
+						if ( e->isHandled () )
 							break;
 					default:
-						onKeyEvent (dynamic_cast<KeyEvent&>(e));
+						onKeyEvent (dynamic_cast<KeyEvent*>(e));
 						break;
 				}
 		};
-		virtual void onKeyEvent (KeyEvent& e) {};
-		virtual void onKeyPressed (KeyPressedEvent& e) {};
-		virtual void onKeyReleased (KeyReleasedEvent& e) {};
+		virtual void onKeyEvent (KeyEvent* e) {};
+		virtual void onKeyPressed (KeyPressedEvent* e) {};
+		virtual void onKeyReleased (KeyReleasedEvent* e) {};
 
 	};
 	

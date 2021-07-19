@@ -21,6 +21,7 @@ namespace Graphics
 		glm::mat4 m_rotationMat;
 		glm::mat4 m_scalarMat;
 
+
 	public:
 		Star () :renderable(0), m_scalar (1.0f), m_translationMat (glm::mat4 ()), m_rotationMat (glm::mat4 ()), m_scalarMat (glm::mat4 ()) {};
 		Star (uint32_t shaderID, glm::vec3 pos, float scalar = 1.0f);

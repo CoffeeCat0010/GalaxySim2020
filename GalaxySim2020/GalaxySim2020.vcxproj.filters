@@ -96,6 +96,12 @@
     <ClCompile Include="src\Event\ApplicationEventHandler.h">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Event\EventDispatcher.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsLayer.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Graphics\Renderers\BatchRenderer.h">
@@ -120,9 +126,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Event\BaseClasses\Event.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Event\BaseClasses\EventDispatcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Event\BaseClasses\EventHandlers.h">
@@ -213,6 +216,15 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Application\Application.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Event\EventDispatcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsLayer.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Event\BaseClasses\EventBroadcaster.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
