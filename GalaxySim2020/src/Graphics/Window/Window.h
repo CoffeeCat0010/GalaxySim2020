@@ -1,6 +1,6 @@
 #pragma once
 #include "Corepch.h"
-#include "Event/BaseClasses/EventDispatcher.h"
+#include "Event/EventDispatcher.h"
 #include "Math/MVec.h"
 namespace Graphics
 {
@@ -18,5 +18,6 @@ namespace Graphics
 		/// This polls the events from the windowing system and sends them to the dispatcher
 		/// </summary>
 		virtual void pollEvents () = 0;
+		virtual void close () = 0;
 	};
 }

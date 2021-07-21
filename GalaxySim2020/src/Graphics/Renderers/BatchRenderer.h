@@ -36,8 +36,7 @@ namespace Graphics
 		uint32_t m_shaderProgramID;
 		bool m_allowTextures;
 		glm::mat4 projMatrix;
-		//s_maxTextureUnits should be thought of as effectively const
-		static int s_maxTextureUnits;
+		
 	public:
 		BatchRenderer(ShaderProgram& shader, bool allowTextures = true);
 		BatchRenderer(ShaderProgram& shader, uint32_t maxVerts, float indexRatio, bool allowTextures = true);

@@ -99,7 +99,7 @@
     <ClCompile Include="src\Event\EventDispatcher.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="GraphicsLayer.cpp">
+    <ClCompile Include="src\Graphics\GraphicsLayer.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -221,10 +221,16 @@
     <ClInclude Include="src\Event\EventDispatcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GraphicsLayer.h">
+    <ClInclude Include="src\Event\BaseClasses\EventBroadcaster.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Event\BaseClasses\EventBroadcaster.h">
+    <ClInclude Include="src\Graphics\GraphicsLayer.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\Renderers\Renderer.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IO\DataStreamTS.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,7 +3,7 @@
 #include "Corepch.h"
 #include <GLFW/glfw3.h>
 #include "Window.h"
-#include "Event/BaseClasses/EventDispatcher.h"
+#include "Event/EventDispatcher.h"
 #include "OpenglContext.h"
 
 namespace Graphics {
@@ -23,6 +23,6 @@ namespace Graphics {
 		void pollEvents () override;
 		void makeOGLContextCurrent () override;
 		void paint () override;
-
+		void close () override;
 	};
 }

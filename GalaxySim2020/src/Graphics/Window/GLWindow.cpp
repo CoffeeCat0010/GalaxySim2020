@@ -18,6 +18,14 @@ namespace Graphics {
 			return false;
 		}
 		LOG_INFO ("Intializing GLFW...");
+
+		GLenum glewError = glewInit ();
+		if ( glewError != GLEW_OK )
+		{
+			LOG_FATAL ("GLEW failed to intialize! Terminating GLFW!");
+			glfwTerminate ();
+			return false;
+		}
 		return true;
 	}
 	void GLWindow::pollEvents ()
@@ -32,5 +40,11 @@ namespace Graphics {
 	void GLWindow::paint()
 	{
 		glfwSwapBuffers (window);
+	}
+	void GLWindow::close ()
+	{
+		// for now this is fine however it means that there really can only be one window
+		// think about creating base class for managing glfw seperately from the window.
+		glfwTerminate ();
 	}
 }
