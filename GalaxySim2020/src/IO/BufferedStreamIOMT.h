@@ -85,12 +85,17 @@ namespace IO
 		std::string m_path;
 		std::ofstream m_fileStream;
 
-		size_t m_elementsPerRead;
+		size_t m_elementsPerWrite;
 		uint32_t m_numBuffers;
 		bool threadShouldEnd;
 	public:
 		BufferStreamWriterMT ()
 			:m_path (""), m_elementsPerRead (0), m_numBuffers (0), threadShouldEnd (true)
+		{}
+		BufferStreamWriterMT (const BufferStreamWriter& BSW)
+			:m_streamBuffers(BSW.m_streamBuffers), m_writeMutex(BSW.m_writeMutex), m_threadControl(BSW.m_threadcontrol),
+			m_writeThread(BSW.m_writeThread), m_path (BSW.m_path), m_fileStream(BSW.m_fileStream)
+			m_elementsPerWrite (BSW.m_elementsPerWrite), m_numBuffers (BSW.m_numbuffers),threadShouldEnd (BSW.m_numBuffers)
 		{}
 		BufferStreamWriterMT (const std::string& path, size_t elementsPerRead, uint32_t numBuffers = 3, std::ios_base::openmode mode = std::ios::binary)
 			:m_path (path), m_fileStream(ifstream(path, std::ios::out | mode)), m_elementsPerRead (elementsPerRead), m_numBuffers (numBuffers), threadShouldEnd (false)
@@ -108,6 +113,11 @@ namespace IO
 				}
 				m_writeThread.join ();
 			}
+		}
+		BufferStreamWriterMT<T>& operator=(const BufferStreamWriterMT<T>& writer2)
+		{
+			BufferStreamWriterMT<T> result (writer2);
+			return result;
 		}
 		void startWrite ()
 		{

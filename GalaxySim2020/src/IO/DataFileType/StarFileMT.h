@@ -7,6 +7,11 @@ namespace IO
 	class StarFileMT
 	{
 	private:
+		enum fileVersion
+		{
+			LEGACY = 0,
+			VER_1_0
+		};
 		struct Header
 		{
 			uint64_t versionNum;
@@ -17,19 +22,19 @@ namespace IO
 		};
 
 		typedef Application::Vec3f Vec3f;
-		BufferStreamReaderMT<Vec3f> reader;
-		BufferStreamWriterMT<Vec3f> writer;
-		std::string path;
-		Header header;
+		BufferStreamReaderMT<Vec3f> m_reader;
+		BufferStreamWriterMT<Vec3f> m_writer;
+		std::string m_path;
+		Header m_header;
 
 	public:
 		StarFileMT ();
 		~StarFileMT();
-		static std::shared_ptr<StarFileMT> openFile(const std::string& path);
-		static std::shared_ptr<StarFileMT> createFile( const std::string& path, uint32_t numStars);
+		static std::shared_ptr<StarFileMT> openFile(const std::string& path, fileVersion version = VER_1_0);
+		static std::shared_ptr<StarFileMT> createFile( const std::string& path, uint32_t numStars, uint32_t numTimeSteps);
 		void writeTimeStep (const Vec3f* data);
 		std::vector<Vec3f> getTimeStep();
-		inline uint64_t getNumStars() {return header.numStars;};
+		inline uint64_t getNumStars() {return m_header.numStars;};
 	private:
 		StarFileMT(const std::string& path);
 	};
