@@ -188,9 +188,10 @@
     <ClCompile Include="src\Graphics\Buffers\VertexBuffer.cpp" />
     <ClCompile Include="src\Graphics\Shapes\square2D.cpp" />
     <ClCompile Include="src\Vendor\stb_image\stb_image.cpp" />
+    <ClCompile Include="src\IO\DataFileType\StarFileMT.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\IO\DataStreamTS.h" />
+    <ClInclude Include="src\IO\BufferedStreamIOMT.h" />
     <ClInclude Include="src\Graphics\GraphicsLayer.h" />
     <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\Event\BaseClasses\EventBroadcaster.h" />
@@ -233,6 +234,7 @@
     <ClInclude Include="src\Graphics\Shapes\square2D.h" />
     <ClInclude Include="src\Vendor\stb_image\stb_image.h" />
     <ClInclude Include="src\Graphics\Primatives\vertex.h" />
+    <ClInclude Include="src\IO\DataFileType\StarFileMT.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GeneratedFiles\moc_predefs.h.cbt">

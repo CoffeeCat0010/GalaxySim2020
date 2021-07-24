@@ -102,6 +102,9 @@
     <ClCompile Include="src\Graphics\GraphicsLayer.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\IO\DataFileType\StarFileMT.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Graphics\Renderers\BatchRenderer.h">
@@ -230,7 +233,10 @@
     <ClInclude Include="src\Graphics\Renderers\Renderer.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\IO\DataStreamTS.h">
+    <ClInclude Include="src\IO\DataFileType\StarFileMT.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IO\BufferedStreamIOMT.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
