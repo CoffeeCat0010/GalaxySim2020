@@ -10,7 +10,9 @@ namespace QUI{
 	{
 	}
 	void QtMainWindow::pollEvents ()
-	{}
+	{
+		
+	}
 	void QtMainWindow::paint ()
 	{}
 }

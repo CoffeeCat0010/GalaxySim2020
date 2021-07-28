@@ -15,9 +15,13 @@ namespace Graphics {
 	private:
 		GLFWwindow* window;
 		std::string title;
+		std::shared_ptr<Application::EventDispatcher> dispatcher_ptr;
+		bool m_fullscreen;
 		
 	public:
-		GLWindow(std::string title, int32_t sizeX = DEFAULT_SIZE_X, int32_t sizeY = DEFAULT_SIZE_Y, bool fullscreen = false);
+		GLWindow(std::string title, std::shared_ptr<Application::EventDispatcher> dispatcher, 
+			int32_t sizeX = DEFAULT_SIZE_X, int32_t sizeY = DEFAULT_SIZE_Y, bool fullscreen = false);
+		bool shouldClose() override {return glfwWindowShouldClose(window);}
 		GLFWwindow* getWindow();
 		bool init () override;
 		void pollEvents () override;

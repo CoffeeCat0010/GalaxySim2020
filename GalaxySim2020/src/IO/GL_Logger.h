@@ -13,6 +13,7 @@
 		if((err = glGetError()) != 0){ \
 			IO::logger* l = l->getInstance(); \
 			l->printMessage("Opengl error " + std::to_string(err) +" in " + (std::string)__FILE__ + " at line " + std::to_string(__LINE__), IO::FATAL); \
+			std::cout << "Opengl error " + std::to_string(err) +" in " + (std::string)__FILE__ + " at line " + std::to_string(__LINE__) << std::endl; \
 			exit(EXIT_FAILURE); }}
 #else
 	#define GL_CHECK(x) x;

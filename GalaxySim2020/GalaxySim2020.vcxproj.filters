@@ -87,9 +87,6 @@
     <ClCompile Include="src\Graphics\Window\QtWindow.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Application\Application.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Event\ApplicationEvents.h">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -103,6 +100,9 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="src\IO\DataFileType\StarFileMT.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application\Application.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -218,9 +218,6 @@
     <ClInclude Include="src\Graphics\GUI Components\SceneBase.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Application\Application.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Event\EventDispatcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -239,6 +236,9 @@
     <ClInclude Include="src\IO\BufferedStreamIOMT.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Application\Application.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GeneratedFiles\moc_predefs.h.cbt">
@@ -247,6 +247,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
+    <None Include="Main.cpp.old" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="src\Graphics\GUI Components\QtGui\QtMainWindow.ui" />

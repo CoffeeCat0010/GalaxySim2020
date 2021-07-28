@@ -163,8 +163,8 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Graphics\GraphicsLayer.cpp" />
     <ClCompile Include="src\Application\Application.cpp" />
+    <ClCompile Include="src\Graphics\GraphicsLayer.cpp" />
     <ClCompile Include="src\Event\ApplicationEventHandler.h" />
     <ClCompile Include="src\Event\ApplicationEvents.h" />
     <ClCompile Include="src\Event\EventDispatcher.cpp" />
@@ -191,9 +191,9 @@
     <ClCompile Include="src\IO\DataFileType\StarFileMT.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\IO\BufferedStreamIOMT.h" />
     <ClInclude Include="src\Graphics\GraphicsLayer.h" />
-    <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\Event\BaseClasses\EventBroadcaster.h" />
     <ClInclude Include="src\Graphics\GUI Components\SceneBase.h" />
     <ClInclude Include="src\Graphics\Renderers\BatchRenderer.h" />
@@ -251,6 +251,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
+    <None Include="Main.cpp.old" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="src\Graphics\GUI Components\QtGui\QtMainWindow.ui" />

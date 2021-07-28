@@ -1,6 +1,6 @@
 #include "Corepch.h"
 #include "Application.h"
-#include "Graphics/Window/GLWindow.h"
+#include "Graphics/GraphicsLayer.h"
 namespace Application
 {
 	App* App::INSTANCE = nullptr;
@@ -12,29 +12,16 @@ namespace Application
 	{
 		config.logger = IO::logger::getInstance ();
 		config.dispatcher = std::make_shared<EventDispatcher> ();
-		std::shared_ptr<Graphics::GLWindow> window = std::make_shared<Graphics::GLWindow> 
-			(Graphics::GLWindow("GalSim 2020", config.dispatcher, 1920, 1080));
-		if ( !window->init () )
-			return false;
-		config.window = std::shared_ptr<Graphics::IWindow> (window);
-		config.viewport = std::shared_ptr<Graphics::IOpenglContext> (window);
 		config.running = true;
+		config.dispatcher->subscribe(onCloseEvent, EventDispatcher::Priority::CRITICAL);
+		G_Layer = std::make_unique<Graphics::GraphicsLayer>(config.dispatcher);
+		G_Layer->onAttach();
 		return true;
 	}
-	void App::run ()
+	bool App::cleanUp ()
 	{
-		while ( config.running )
-		{
-			update ();
-			render ();
-		}
+		G_Layer->onDetatch();
+		return true;
 	}
-	void App::update ()
-	{
-		config.window->pollEvents ();
-	}
-	void App::render ()
-	{
-		
-	}
+	
 }

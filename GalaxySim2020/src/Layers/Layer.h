@@ -8,6 +8,6 @@ namespace Application
 	public:
 		virtual void onAttach () = 0;
 		virtual void onDetatch () = 0;
-		virtual void init () = 0;
+		virtual bool init () = 0;
 	};
 }

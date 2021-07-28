@@ -36,6 +36,7 @@ namespace Graphics
 		uint32_t m_shaderProgramID;
 		bool m_allowTextures;
 		glm::mat4 projMatrix;
+		static int s_maxTextureUnits;
 		
 	public:
 		BatchRenderer(ShaderProgram& shader, bool allowTextures = true);
@@ -44,6 +45,7 @@ namespace Graphics
 		static int getMaxTextureUnits();
 		void addMesh(renderable& mesh);
 		void render();
+		inline uint32_t getShaderProgramID() {return m_shaderProgramID;}
 
 	private:
 		inline bool hasSameShader(const renderable& mesh) { return mesh.getShaderProgram() == m_shaderProgramID; }

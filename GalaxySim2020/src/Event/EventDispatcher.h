@@ -7,17 +7,17 @@
 namespace Application
 {
 
-	class EventDispatcher : public EventBroadcaster
+	class EventDispatcher
 	{
 	private:
 		static EventDispatcher* INSTANCE;
-		std::vector<std::weak_ptr<EventHandler>> m_handlers;
+		std::vector<std::weak_ptr<std::function<void(Event* e)>>> m_callbacks;
 	public:
-		static EventDispatcher* getInstance();
-		void subscribe (std::weak_ptr < EventHandler > handler, Priority p = Priority::NORMAL) override;
-		void unsubscribe (std::weak_ptr < EventHandler > handler) override;
-		void upload (Event* e) override;
-	private:
+		static const enum class Priority { CRITICAL, NORMAL };
 		EventDispatcher (){}
+		void subscribe (std::weak_ptr < std::function<void (Event* e)>> callback, Priority p = Priority::NORMAL);
+		void unsubscribe (std::weak_ptr < std::function<void (Event* e)>> callback);
+		void dispatch (Event* e);
+	private:
 	};
 }

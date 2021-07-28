@@ -3,41 +3,34 @@
 
 namespace Application
 {
-	EventDispatcher* EventDispatcher::INSTANCE = nullptr; 
-	EventDispatcher* EventDispatcher::getInstance ()
-	{
-		if (INSTANCE == nullptr )
-			INSTANCE = new EventDispatcher();
-		return INSTANCE;
-	}
-	void EventDispatcher::subscribe (std::weak_ptr<EventHandler> handler, Priority p)
+	void EventDispatcher::subscribe (std::weak_ptr<std::function<void(Event* e)>> callback, Priority p)
 	{
 		if ( p == Priority::NORMAL )
-			m_handlers.insert (m_handlers.end (), handler);
+			m_callbacks.insert (m_callbacks.end (), callback);
 		else
-			m_handlers.insert (m_handlers.begin (), handler);
+			m_callbacks.insert (m_callbacks.begin (), callback );
 	}
-	void EventDispatcher::unsubscribe (std::weak_ptr<EventHandler> handler)
+	void EventDispatcher::unsubscribe (std::weak_ptr<std::function<void (Event* e)>> callback)
 	{
-		auto s_handler = std::make_shared<EventHandler> (handler);
-		for ( auto it = m_handlers.begin (); it != m_handlers.end (); ++it )
+		auto s_callback = callback.lock();
+		for ( auto it = m_callbacks.begin (); it != m_callbacks.end (); ++it )
 		{
 			if ( it->expired () )
-				m_handlers.erase (it);
-			if ( it->lock () == s_handler )
+				m_callbacks.erase (it);
+			if ( it->lock () == s_callback )
 			{
-				m_handlers.erase (it);
+				m_callbacks.erase (it);
 				break;
 			}
 		}
 	}
-	void EventDispatcher::upload (Event* e)
+	void EventDispatcher::dispatch (Event* e)
 	{
-		for ( auto it = m_handlers.begin (); it != m_handlers.end (); ++it )
+		for ( auto it = m_callbacks.begin (); it != m_callbacks.end (); ++it )
 		{
 			if ( it->expired () )
-				m_handlers.erase (it);
-			it->lock ()->onEvent (e);
+				m_callbacks.erase (it);
+			(*it->lock ()->target<void(*)(Event*)>())(e);
 		}
 	}
 }
