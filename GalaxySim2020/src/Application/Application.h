@@ -21,8 +21,9 @@ namespace Application
 	class App
 	{
 	private:
-		typedef std::shared_ptr<std::function<void (Application::Event* e)>> sharedCallbackPtr;
-		typedef std::function<void (Application::Event* e)> callback;
+		typedef std::shared_ptr<Event> sharedEvtPtr;
+		typedef std::shared_ptr<std::function<void (sharedEvtPtr e)>> sharedCallbackPtr;
+		typedef std::function<void (sharedEvtPtr e)> callback;
 		Configuration config;
 		std::unique_ptr<Graphics::GraphicsLayer> G_Layer;
 	public:
@@ -40,7 +41,7 @@ namespace Application
 		inline bool isRunning() {return config.running;}
 	private:
 		App ();
-		sharedCallbackPtr onCloseEvent = std::make_shared<callback> ([=](Event* e)
+		sharedCallbackPtr onCloseEvent = std::make_shared<callback> ([=](sharedEvtPtr e)
 			{
 				if ( e->getEventType () == EventType::close ){
 					config.running = false;

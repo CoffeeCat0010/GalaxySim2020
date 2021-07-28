@@ -12,7 +12,7 @@
 int main() {
 	Application::App* entry = Application::App::getInstance();
 	entry->init();
-	
+	while ( entry->getConfig ().running );
 	entry->cleanUp();
 	return 0;
 }

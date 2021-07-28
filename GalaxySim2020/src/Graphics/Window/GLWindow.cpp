@@ -1,5 +1,6 @@
 #include "Corepch.h"
 #include "GLWindow.h"
+#include "Event/ApplicationEvents.h"
 namespace Graphics {
 	GLWindow::GLWindow(std::string title, std::shared_ptr<Application::EventDispatcher> dispatcher, int32_t sizeX, int32_t sizeY, bool fullscreen)
 		:IWindow(sizeX, sizeY), dispatcher_ptr(dispatcher),IOpenglContext(sizeX, sizeY), title(title), m_fullscreen(fullscreen)
@@ -31,6 +32,9 @@ namespace Graphics {
 	void GLWindow::pollEvents ()
 	{
 		glfwPollEvents ();
+		if ( shouldClose () )
+			dispatcher_ptr->dispatch (std::make_shared<Application::AppCloseEvent> ());
+		
 	}
 	void GLWindow::makeOGLContextCurrent ()
 	{

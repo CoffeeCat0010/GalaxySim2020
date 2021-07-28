@@ -54,6 +54,7 @@ namespace IO
 		std::vector<T> readBuffer ()
 		{
 			std::lock_guard<std::mutex> lock (m_readMutex);
+			// occasional problem here caused by streambuffers not being checked if empty
 			std::vector<T> result = m_streamBuffers.front();
 			m_streamBuffers.pop();
 			return result;

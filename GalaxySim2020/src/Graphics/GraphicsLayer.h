@@ -18,13 +18,14 @@ namespace Graphics{
 		public std::enable_shared_from_this<GraphicsLayer>
 	{
 
-		#define NUM_OF_STARS 49152 // 1024
+		#define NUM_OF_STARS 1024 //49152 // 1024
 		//49152
-		#define NUM_TIME_STEPS 10000 //5000
+		#define NUM_TIME_STEPS 5000 //5000
 		//10000
-		typedef std::shared_ptr<std::function<void (Application::Event* e)>> sharedCallbackPtr;
-		typedef std::function<void (Application::Event* e)> callback;
 	private:
+		typedef std::shared_ptr<Application::Event> sharedEvtPtr;
+		typedef std::shared_ptr<std::function<void (sharedEvtPtr e)>> sharedCallbackPtr;
+		typedef std::function<void (sharedEvtPtr e)> callback;
 		std::shared_ptr<IWindow> m_window;
 		std::shared_ptr<IOpenglContext> m_OGLcontext;
 		std::shared_ptr<Application::EventDispatcher> m_eventSystem;
@@ -41,7 +42,7 @@ namespace Graphics{
 		void onAttach() override;
 		void onDetatch() override;
 		bool init() override;
-		sharedCallbackPtr onEvent = std::make_shared <callback> ([=](Application::Event* e)
+		sharedCallbackPtr onEvent = std::make_shared <callback> ([=](sharedEvtPtr e)
 		{
 			
 		});
@@ -51,7 +52,7 @@ namespace Graphics{
 			init();
 			m_OGLcontext->makeOGLContextCurrent();
 			std::shared_ptr<IO::StarFileMT> rFile (
-				(IO::StarFileMT::readFile ("C:/Users/justi/Simulations/testFile.STAR", IO::StarFileMT::fileVersion::LEGACY)));
+				(IO::StarFileMT::readFile ("./Simulations/testFile.STAR", IO::StarFileMT::fileVersion::LEGACY)));
 			Application::Vec3f* test = new Application::Vec3f[NUM_OF_STARS];
 			Graphics::Star* gStars = new Graphics::Star[NUM_OF_STARS];
 			for ( int i = 0; i < NUM_OF_STARS; i++ )

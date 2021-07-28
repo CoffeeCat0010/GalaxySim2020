@@ -96,8 +96,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>.\src\Vendor\opencl_nvidia\lib\OpenCL.lib;D:\Repos\GalaxySim2020\Dependencies\glew2.1.0\GLEW_x64\glew32s.lib;D:\Repos\GalaxySim2020\Dependencies\glfw-x64\lib-vc2019\glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>.\src\Vendor\opencl_nvidia\lib;D:\Repos\GalaxySim2020\Dependencies\glew2.1.0\GLEW_x64;D:\Repos\GalaxySim2020\Dependencies\glfw-x64\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>.\src\Vendor\opencl_nvidia\lib\OpenCL.lib;$(SolutionDir)Dependencies\glew2.1.0\GLEW_x64\glew32s.lib;$(SolutionDir)Dependencies\glfw-x64\lib-vc2019\glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\src\Vendor\opencl_nvidia\lib;$(SolutionDir)Dependencies\glew2.1.0\GLEW_x64;$(SolutionDir)Dependencies\glfw-x64\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -139,8 +139,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>.\src\Vendor\opencl_nvidia\lib\OpenCL.lib;D:\Repos\GalaxySim2020\Dependencies\glew2.1.0\GLEW_x64\glew32s.lib;D:\Repos\GalaxySim2020\Dependencies\glfw-x64\lib-vc2019\glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>.\src\Vendor\opencl_nvidia\lib;D:\Repos\GalaxySim2020\Dependencies\glew2.1.0\GLEW_x64;D:\Repos\GalaxySim2020\Dependencies\glfw-x64\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>.\src\Vendor\opencl_nvidia\lib\OpenCL.lib;$(SolutionDir)Dependencies\glew2.1.0\GLEW_x64\glew32s.lib;$(SolutionDir)Dependencies\glfw-x64\lib-vc2019\glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\src\Vendor\opencl_nvidia\lib;$(SolutionDir)Dependencies\glew2.1.0\GLEW_x64;$(SolutionDir)Dependencies\glfw-x64\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -168,6 +168,7 @@
     <ClCompile Include="src\Event\ApplicationEventHandler.h" />
     <ClCompile Include="src\Event\ApplicationEvents.h" />
     <ClCompile Include="src\Event\EventDispatcher.cpp" />
+    <ClCompile Include="src\Graphics\GUI Components\QtGui\QtMainWindow.cpp" />
     <ClCompile Include="src\Graphics\Renderers\BatchRenderer.cpp" />
     <ClCompile Include="src\Graphics\Window\Camera.cpp" />
     <ClCompile Include="src\Compute\ComputeLayer.cpp" />
@@ -192,6 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application\Application.h" />
+    <QtMoc Include="src\Graphics\GUI Components\QtGui\QtMainWindow.h" />
     <ClInclude Include="src\IO\BufferedStreamIOMT.h" />
     <ClInclude Include="src\Graphics\GraphicsLayer.h" />
     <ClInclude Include="src\Event\BaseClasses\EventBroadcaster.h" />

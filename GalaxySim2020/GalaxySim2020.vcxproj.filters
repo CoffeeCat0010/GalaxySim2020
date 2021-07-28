@@ -105,6 +105,9 @@
     <ClCompile Include="src\Application\Application.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Graphics\GUI Components\QtGui\QtMainWindow.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Graphics\Renderers\BatchRenderer.h">
@@ -251,5 +254,10 @@
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="src\Graphics\GUI Components\QtGui\QtMainWindow.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="src\Graphics\GUI Components\QtGui\QtMainWindow.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>

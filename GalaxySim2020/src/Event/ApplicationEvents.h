@@ -17,5 +17,7 @@ namespace Application
 		AppCloseEvent ()
 			:ApplicationEvent(EventType::close)
 		{}
+		inline EventType getEventType () const override { return m_eventType; }
+		inline std::string getName () const override { return "AppCloseEvent"; }
 	};
 }
