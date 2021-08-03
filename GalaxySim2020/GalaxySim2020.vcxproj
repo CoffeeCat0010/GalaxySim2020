@@ -78,7 +78,7 @@
   </ImportGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;src;src\Vendor;src\Vendor\opencl_nvidia\include;..\Dependencies\glew2.1.0\include;..\Dependencies\glfw-x64\include;./GeneratedFiles/$(ConfigurationName);/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;src;src\Vendor\inipp;src\Vendor;src\Vendor\opencl_nvidia\include;..\Dependencies\glew2.1.0\include;..\Dependencies\glfw-x64\include;./GeneratedFiles/$(ConfigurationName);/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -116,10 +116,13 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_CONSOLE;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;GLEW_STATIC;LOG_VERBOSE;GL_LOG_ERROR;$(NOINHERIT);QT_GUI_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
+    <QtUic>
+      <QtUicDir>.\src\QTGenerated\uic\</QtUicDir>
+    </QtUic>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;src;src\Vendor;src\Vendor\opencl_nvidia\include;..\Dependencies\glew2.1.0\include;..\Dependencies\glfw-x64\include;./GeneratedFiles/$(ConfigurationName);/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;src;src\Vendor\inipp;src\Vendor;src\Vendor\opencl_nvidia\include;..\Dependencies\glew2.1.0\include;..\Dependencies\glfw-x64\include;./GeneratedFiles/$(ConfigurationName);/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -161,14 +164,18 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_CONSOLE;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;GLEW_STATIC;LOG_VERBOSE;GL_LOG_ERROR;$(NOINHERIT);NDEBUG;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
+    <QtUic>
+      <QtUicDir>.\src\QTGenerated\uic\</QtUicDir>
+    </QtUic>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Graphics\GUI Components\QtGui\OpenGlWidget\OpenGlWidget.cpp" />
+    <ClCompile Include="src\Graphics\GUI Components\QtGui\MainWindow\MainWindow.cpp" />
     <ClCompile Include="src\Application\Application.cpp" />
     <ClCompile Include="src\Graphics\GraphicsLayer.cpp" />
     <ClCompile Include="src\Event\ApplicationEventHandler.h" />
     <ClCompile Include="src\Event\ApplicationEvents.h" />
     <ClCompile Include="src\Event\EventDispatcher.cpp" />
-    <ClCompile Include="src\Graphics\GUI Components\QtGui\QtMainWindow.cpp" />
     <ClCompile Include="src\Graphics\Renderers\BatchRenderer.cpp" />
     <ClCompile Include="src\Graphics\Window\Camera.cpp" />
     <ClCompile Include="src\Compute\ComputeLayer.cpp" />
@@ -192,12 +199,12 @@
     <ClCompile Include="src\IO\DataFileType\StarFileMT.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="src\Graphics\GUI Components\QtGui\MainWindow\MainWindow.h" />
+    <QtMoc Include="src\Graphics\GUI Components\QtGui\OpenGlWidget\OpenGlWidget.h" />
     <ClInclude Include="src\Application\Application.h" />
-    <QtMoc Include="src\Graphics\GUI Components\QtGui\QtMainWindow.h" />
     <ClInclude Include="src\IO\BufferedStreamIOMT.h" />
     <ClInclude Include="src\Graphics\GraphicsLayer.h" />
     <ClInclude Include="src\Event\BaseClasses\EventBroadcaster.h" />
-    <ClInclude Include="src\Graphics\GUI Components\SceneBase.h" />
     <ClInclude Include="src\Graphics\Renderers\BatchRenderer.h" />
     <ClInclude Include="src\Graphics\Renderers\Renderer.h" />
     <ClInclude Include="src\Graphics\Window\Camera.h" />
@@ -253,10 +260,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
+    <None Include="cpp.hint" />
     <None Include="Main.cpp.old" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="src\Graphics\GUI Components\QtGui\QtMainWindow.ui" />
+    <QtUic Include="src\Graphics\GUI Components\QtGui\OpenGlWidget\OpenGlWidget.ui" />
+    <QtUic Include="src\Graphics\GUI Components\QtGui\MainWindow\MainWindow.ui" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
