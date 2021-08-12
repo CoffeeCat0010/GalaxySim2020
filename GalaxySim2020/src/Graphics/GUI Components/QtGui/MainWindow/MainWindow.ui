@@ -72,7 +72,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>90</y>
+            <y>170</y>
             <width>231</width>
             <height>141</height>
            </rect>
@@ -80,7 +80,7 @@
           <property name="title">
            <string>Selected OpenCL Device</string>
           </property>
-          <widget class="QComboBox" name="OCL_Device_Selector">
+          <widget class="QComboBox" name="Device_Select">
            <property name="geometry">
             <rect>
              <x>0</x>
@@ -108,15 +108,15 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>30</y>
+            <y>110</y>
             <width>231</width>
             <height>51</height>
            </rect>
           </property>
           <property name="title">
-           <string>OpenCL Device Context</string>
+           <string>OpenCL Device Type</string>
           </property>
-          <widget class="QComboBox" name="OCL_Device_Selector_2">
+          <widget class="QComboBox" name="Device_Type_Select">
            <property name="geometry">
             <rect>
              <x>0</x>
@@ -152,11 +152,29 @@
            </item>
           </widget>
          </widget>
-        </widget>
-        <widget class="QWidget" name="tab_2">
-         <attribute name="title">
-          <string>Tab 2</string>
-         </attribute>
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>30</y>
+            <width>231</width>
+            <height>71</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string>GroupBox</string>
+          </property>
+          <widget class="QComboBox" name="Platform_select">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>20</y>
+             <width>231</width>
+             <height>22</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
         </widget>
        </widget>
       </item>
@@ -296,10 +314,78 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>Device_Type_Select</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onDeviceTypeSelected(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>190</x>
+     <y>192</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>243</x>
+     <y>755</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Platform_select</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onPlatformSelected(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>146</x>
+     <y>113</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>243</x>
+     <y>720</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Device_Select</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onDeviceSelected(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>203</x>
+     <y>253</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>240</x>
+     <y>748</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCreate_Simulation</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onCreateSimulationTriggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>639</x>
+     <y>359</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onPlaySimulationTriggered()</slot>
   <slot>onLoadSimulationTriggered()</slot>
   <slot>onPauseSimulationTriggered()</slot>
+  <slot>onPlatformSelected(int)</slot>
+  <slot>onDeviceTypeSelected(QString)</slot>
+  <slot>onDeviceSelected(int)</slot>
+  <slot>onCreateSimulationTriggered()</slot>
  </slots>
 </ui>

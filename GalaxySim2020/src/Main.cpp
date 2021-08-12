@@ -7,6 +7,7 @@
 #include <Graphics/GUI Components/QtGui/MainWindow/MainWindow.h>
 #include "Event/EventDispatcher.h"
 #include "inipp.h"
+#include "CL/cl.hpp"
 #define NUM_OF_STARS 49152 // 1024
 //49152
 #define NUM_TIME_STEPS 10000 //5000

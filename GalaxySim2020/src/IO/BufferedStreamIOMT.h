@@ -99,6 +99,7 @@ namespace IO
 		std::thread m_writeThread;
 		std::string m_path;
 		std::ofstream m_fileStream;
+		std::ofstream::openmode m_mode;
 
 		size_t m_sizeWriteInBytes;
 		uint32_t m_numBuffers;
@@ -112,11 +113,11 @@ namespace IO
 			m_writeThread(BSW.m_writeThread), m_path (BSW.m_path), m_fileStream(BSW.m_fileStream),
 			m_sizeWriteInBytes (BSW.m_sizeWriteInBytes), m_numBuffers (BSW.m_numBuffers),threadShouldEnd (BSW.m_numBuffers)
 		{}
-		BufferStreamWriterMT (const std::string& path, size_t sizeWriteInBytes, uint32_t numBuffers = 3, std::ios_base::openmode mode = std::ios::binary)
-			:m_path (path), m_fileStream(std::ofstream(path, std::ios::out | mode)), m_sizeWriteInBytes (sizeWriteInBytes), m_numBuffers (numBuffers), threadShouldEnd (false)
+		BufferStreamWriterMT (const std::string& path, size_t sizeWriteInBytes, uint32_t numBuffers = 3, std::ofstream::openmode mode = std::ofstream::binary)
+			:m_path (path), m_fileStream(std::ofstream()), m_mode(mode), m_sizeWriteInBytes (sizeWriteInBytes), m_numBuffers (numBuffers), threadShouldEnd (false)
 		{}
-		BufferStreamWriterMT (const char* path, size_t m_sizeWriteInBytes, uint32_t numBuffers = 3, std::ios_base::openmode mode = std::ios::binary)
-			:m_path (path), m_fileStream (std::ofstream (path, std::ios::out | mode)), m_sizeWriteInBytes (sizeWriteInBytes), m_numBuffers (numBuffers), threadShouldEnd (false)
+		BufferStreamWriterMT (const char* path, size_t m_sizeWriteInBytes, uint32_t numBuffers = 3, std::ofstream::openmode mode = std::ofstream::binary)
+			:m_path (path), m_fileStream (std::ofstream ()), m_mode(mode), m_sizeWriteInBytes (sizeWriteInBytes), m_numBuffers (numBuffers), threadShouldEnd (false)
 		{}
 		~BufferStreamWriterMT ()
 		{
@@ -151,14 +152,18 @@ namespace IO
 		void readBufferToFile ()
 		{
 			std::lock_guard<std::mutex> guard (m_writeMutex);
-			m_fileStream.write ((char*)m_streamBuffers.front ().data (), m_streamBuffers.front ().size () * sizeof(T));
-			m_streamBuffers.pop ();
+			if(!m_streamBuffers.empty()){
+				m_fileStream.write ((char*)m_streamBuffers.front ().data (), m_streamBuffers.front ().size () * sizeof(T));
+				m_fileStream.flush();
+				m_streamBuffers.pop ();
+			}
 		}
 		std::function<void()> runWrite = [=]()
 		{
 			m_threadControl.lock ();
 			bool end = threadShouldEnd;
 			m_threadControl.unlock ();
+			m_fileStream.open(m_path, m_mode);
 			while (!end)
 			{
 				readBufferToFile();

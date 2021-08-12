@@ -44,11 +44,12 @@ public:
     QWidget *OpenCL_tab;
     QFrame *line;
     QGroupBox *groupBox;
-    QComboBox *OCL_Device_Selector;
+    QComboBox *Device_Select;
     QTextEdit *Device_Properties;
     QGroupBox *groupBox_2;
-    QComboBox *OCL_Device_Selector_2;
-    QWidget *tab_2;
+    QComboBox *Device_Type_Select;
+    QGroupBox *groupBox_3;
+    QComboBox *Platform_select;
     QWidget *horizontalLayoutWidget_2;
     QHBoxLayout *OpenGL_Layout;
     QMenuBar *menuBar;
@@ -110,29 +111,32 @@ public:
         line->setFrameShadow(QFrame::Sunken);
         groupBox = new QGroupBox(OpenCL_tab);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(0, 90, 231, 141));
-        OCL_Device_Selector = new QComboBox(groupBox);
-        OCL_Device_Selector->setObjectName(QString::fromUtf8("OCL_Device_Selector"));
-        OCL_Device_Selector->setGeometry(QRect(0, 20, 231, 22));
+        groupBox->setGeometry(QRect(0, 170, 231, 141));
+        Device_Select = new QComboBox(groupBox);
+        Device_Select->setObjectName(QString::fromUtf8("Device_Select"));
+        Device_Select->setGeometry(QRect(0, 20, 231, 22));
         Device_Properties = new QTextEdit(groupBox);
         Device_Properties->setObjectName(QString::fromUtf8("Device_Properties"));
         Device_Properties->setGeometry(QRect(0, 50, 231, 71));
         Device_Properties->setReadOnly(true);
         groupBox_2 = new QGroupBox(OpenCL_tab);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
-        groupBox_2->setGeometry(QRect(0, 30, 231, 51));
-        OCL_Device_Selector_2 = new QComboBox(groupBox_2);
-        OCL_Device_Selector_2->addItem(QString());
-        OCL_Device_Selector_2->addItem(QString());
-        OCL_Device_Selector_2->addItem(QString());
-        OCL_Device_Selector_2->addItem(QString());
-        OCL_Device_Selector_2->addItem(QString());
-        OCL_Device_Selector_2->setObjectName(QString::fromUtf8("OCL_Device_Selector_2"));
-        OCL_Device_Selector_2->setGeometry(QRect(0, 20, 231, 22));
+        groupBox_2->setGeometry(QRect(0, 110, 231, 51));
+        Device_Type_Select = new QComboBox(groupBox_2);
+        Device_Type_Select->addItem(QString());
+        Device_Type_Select->addItem(QString());
+        Device_Type_Select->addItem(QString());
+        Device_Type_Select->addItem(QString());
+        Device_Type_Select->addItem(QString());
+        Device_Type_Select->setObjectName(QString::fromUtf8("Device_Type_Select"));
+        Device_Type_Select->setGeometry(QRect(0, 20, 231, 22));
+        groupBox_3 = new QGroupBox(OpenCL_tab);
+        groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
+        groupBox_3->setGeometry(QRect(0, 30, 231, 71));
+        Platform_select = new QComboBox(groupBox_3);
+        Platform_select->setObjectName(QString::fromUtf8("Platform_select"));
+        Platform_select->setGeometry(QRect(0, 20, 231, 22));
         Config_Tabs->addTab(OpenCL_tab, QString());
-        tab_2 = new QWidget();
-        tab_2->setObjectName(QString::fromUtf8("tab_2"));
-        Config_Tabs->addTab(tab_2, QString());
 
         horizontalLayout->addWidget(Config_Tabs);
 
@@ -180,6 +184,10 @@ public:
         QObject::connect(actionPlay_Simulation, SIGNAL(triggered()), MainWindow, SLOT(onPlaySimulationTriggered()));
         QObject::connect(actionLoad_Simulation, SIGNAL(triggered()), MainWindow, SLOT(onLoadSimulationTriggered()));
         QObject::connect(actionPause_simulation, SIGNAL(triggered()), MainWindow, SLOT(onPauseSimulationTriggered()));
+        QObject::connect(Device_Type_Select, SIGNAL(currentIndexChanged(QString)), MainWindow, SLOT(onDeviceTypeSelected(QString)));
+        QObject::connect(Platform_select, SIGNAL(currentIndexChanged(int)), MainWindow, SLOT(onPlatformSelected(int)));
+        QObject::connect(Device_Select, SIGNAL(currentIndexChanged(int)), MainWindow, SLOT(onDeviceSelected(int)));
+        QObject::connect(actionCreate_Simulation, SIGNAL(triggered()), MainWindow, SLOT(onCreateSimulationTriggered()));
 
         Config_Tabs->setCurrentIndex(0);
 
@@ -196,15 +204,15 @@ public:
         actionCreate_Simulation->setText(QCoreApplication::translate("MainWindow", "Create ", nullptr));
         actionPause_simulation->setText(QCoreApplication::translate("MainWindow", "Pause", nullptr));
         groupBox->setTitle(QCoreApplication::translate("MainWindow", "Selected OpenCL Device", nullptr));
-        groupBox_2->setTitle(QCoreApplication::translate("MainWindow", "OpenCL Device Context", nullptr));
-        OCL_Device_Selector_2->setItemText(0, QCoreApplication::translate("MainWindow", "GPU", nullptr));
-        OCL_Device_Selector_2->setItemText(1, QCoreApplication::translate("MainWindow", "CPU", nullptr));
-        OCL_Device_Selector_2->setItemText(2, QCoreApplication::translate("MainWindow", "Accelerator", nullptr));
-        OCL_Device_Selector_2->setItemText(3, QCoreApplication::translate("MainWindow", "Default", nullptr));
-        OCL_Device_Selector_2->setItemText(4, QCoreApplication::translate("MainWindow", "All", nullptr));
+        groupBox_2->setTitle(QCoreApplication::translate("MainWindow", "OpenCL Device Type", nullptr));
+        Device_Type_Select->setItemText(0, QCoreApplication::translate("MainWindow", "GPU", nullptr));
+        Device_Type_Select->setItemText(1, QCoreApplication::translate("MainWindow", "CPU", nullptr));
+        Device_Type_Select->setItemText(2, QCoreApplication::translate("MainWindow", "Accelerator", nullptr));
+        Device_Type_Select->setItemText(3, QCoreApplication::translate("MainWindow", "Default", nullptr));
+        Device_Type_Select->setItemText(4, QCoreApplication::translate("MainWindow", "All", nullptr));
 
+        groupBox_3->setTitle(QCoreApplication::translate("MainWindow", "GroupBox", nullptr));
         Config_Tabs->setTabText(Config_Tabs->indexOf(OpenCL_tab), QCoreApplication::translate("MainWindow", "OpenCL", nullptr));
-        Config_Tabs->setTabText(Config_Tabs->indexOf(tab_2), QCoreApplication::translate("MainWindow", "Tab 2", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuSimulation->setTitle(QCoreApplication::translate("MainWindow", "Simulation", nullptr));
         menuEdit->setTitle(QCoreApplication::translate("MainWindow", "Edit", nullptr));

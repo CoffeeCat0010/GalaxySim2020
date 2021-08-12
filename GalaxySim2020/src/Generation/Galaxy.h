@@ -35,9 +35,9 @@ namespace Physics
 		/// <param name="centerMass"></param>
 		Galaxy (int numStars, cl_float3 galaxyPos, glm::vec3 axisOfRotation, glm::vec3 velocity,float radius = AVRG_GALAXY_RADIUS, float centerMass = DEFAULT_CENTER_MASS);
 
-		std::vector<cl_float3> getStarPos () const { return m_starPos; }
-		std::vector<float> getStarMasses () const { return m_StarMasses; }
-		std::vector<cl_float3> getStarVelocities () const { return m_starVelocities; }
+		std::vector<cl_float3>& getStarPos ()  { return m_starPos; }
+		std::vector<float>& getStarMasses ()  { return m_StarMasses; }
+		std::vector<cl_float3>& getStarVelocities ()  { return m_starVelocities; }
 	private:
 
 		void placeStars (glm::vec3 axisOfRotation);

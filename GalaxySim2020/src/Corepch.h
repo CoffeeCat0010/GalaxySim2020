@@ -12,6 +12,7 @@
 #include <shared_mutex>
 #include <thread>
 #include <iostream>
+#include <algorithm>
 
 #include <string>
 #include <queue>

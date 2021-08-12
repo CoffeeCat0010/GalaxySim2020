@@ -44,6 +44,6 @@ namespace Graphics
 		char log[8192];
 		int len;
 		glGetProgramInfoLog(m_id, 8192, &len, log);
-		LOG_INFO(log);
+	//	LOG_INFO(log);
 	}
 }

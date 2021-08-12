@@ -35,7 +35,8 @@ namespace Application
 			//Warning: __has_include() will not work with vs2013 or below and may not work with vs2015
 		};
 			#ifdef __has_include("glm.hpp")
-			operator glm::vec3() const { return {x, y, z};};
+			operator glm::vec3 () const { return { x, y, z }; };
+			operator glm::vec4 () const { return {x, y, z, 0};};
 			#endif
 	};
 	struct Vec4f
@@ -46,6 +47,9 @@ namespace Application
 			struct { float s, t, p, q; };
 			struct { float r, g, b, a; };
 		};
+		#ifdef __has_include("glm.hpp")
+		operator glm::vec4 () const { return { x, y, z, w }; };
+		#endif
 	};
 
 	inline Vec3f cl_float3ToVec3f (const cl_float3& vec)

@@ -10,13 +10,14 @@ __kernel void calcPos (__global const float3* positions,
 {
 	int gid = get_global_id (0);
 	float3 workStarPos = positions[gid];
-	
+
 	float3 workStarVelocity = velocities[gid];
-	
+
 	result[gid] = 0.f;
 	size_t globalSize = get_global_size (0);
 	float3 accelVec = 0;
-	for (size_t i = 0; i < globalSize; ++i ) {
+	for ( size_t i = 0; i < globalSize; ++i )
+	{
 		float3 currStarPos = positions[i];
 		float currStarMass = masses[i];
 		// This is taken from the an equation decribed here: http://www.scholarpedia.org/article/N-body_simulations_(gravitational).

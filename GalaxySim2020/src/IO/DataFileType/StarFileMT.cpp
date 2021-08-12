@@ -48,7 +48,8 @@ namespace IO
 		result->m_header.numTimeSteps = numTimeSteps;
 		result->m_header.stride = numStars * 3 * sizeof(float);
 		file.write ((char*)&(result->m_header), sizeof (Header));
-		result->m_writer = std::make_unique < BufferStreamWriterMT<Vec3f>>(path, result->m_header.stride, std::ios_base::binary | std::ios_base::app);
+		file.close();
+		result->m_writer = std::make_unique < BufferStreamWriterMT<Vec3f>>(path, result->m_header.stride, 3, std::ofstream::binary | std::ofstream::app);
 		result->m_writer->startWrite();
 		result->m_mode = WRITE;
 		return result;

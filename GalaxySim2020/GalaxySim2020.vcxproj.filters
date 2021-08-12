@@ -38,9 +38,6 @@
     <ClCompile Include="src\Graphics\Window\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Compute\ComputeLayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Corepch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -57,9 +54,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\IO\Logger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Graphics\Shaders\Shader.cpp">
@@ -116,24 +110,30 @@
     <ClCompile Include="src\Graphics\GUI Components\QtGui\OpenGlWidget\OpenGlWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Graphics\Renderers\BatchPointRenderer.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Compute\Simulations\NBodySim.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Compute\ComputeLayer.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SimulationWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SimulationProgress.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Graphics\Renderers\BatchRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Graphics\Window\Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Compute\CLprim\ComputeDevice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Compute\CLprim\ComputeKernal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Compute\ComputeLayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Compute\CLprim\ComputeProgram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Corepch.h">
@@ -247,6 +247,42 @@
     <ClInclude Include="src\Application\Application.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Graphics\Renderers\BatchPointRenderer.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Bits.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Compute\CLprim\ComputeProgram.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Compute\CLprim\ComputePlatform.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Compute\CLprim\ComputeMemBuffer.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Compute\CLprim\ComputeKernel.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Compute\CLprim\ComputeDevice.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Compute\CLprim\ComputeContext.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Compute\CLprim\CLPrim.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Compute\CLprim\ComputeCommandQueue.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Compute\Simulations\NBodySim.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Compute\ComputeLayer.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GeneratedFiles\moc_predefs.h.cbt">
@@ -265,12 +301,24 @@
     <QtMoc Include="src\Graphics\GUI Components\QtGui\OpenGlWidget\OpenGlWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SimulationWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SimulationProgress.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="src\Graphics\GUI Components\QtGui\MainWindow\MainWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="src\Graphics\GUI Components\QtGui\OpenGlWidget\OpenGlWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SimulationWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SimulationProgress.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
