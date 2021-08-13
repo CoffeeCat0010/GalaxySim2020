@@ -81,25 +81,12 @@ namespace Compute
 				std::vector<cl_float3> result = p_starPosOutBuffer->pullFromBuffer(m_numStars);
 				file->writeTimeStep (Application::clFloatArrToVec3f (result.data(), m_numStars));
 				std::vector<cl_float3> resultVel1 = p_starVelInBuffer->pullFromBuffer(m_numStars);
-				p_starPosInBuffer->copyFromBuffer (p_starPosOutBuffer.get (), m_numStars);
-				std::copy(resultVel1.begin(), resultVel1.end(), m_starVelArr);
-				p_starVelInBuffer->pushToBuffer(m_starVelArr, m_numStars, 0, true);
+				//p_starPosInBuffer->copyFromBuffer (p_starPosOutBuffer.get (), m_numStars);
+				std::copy (result.begin (), result.begin() + m_numStars, m_starPosArr);
+				std::copy(resultVel1.begin(), resultVel1.begin() + m_numStars, m_starVelArr);
+				p_starVelInBuffer->pushToBuffer (m_starVelArr, m_numStars, 0, true);
+				p_starPosInBuffer->pushToBuffer(m_starPosArr, m_numStars, 0, true);
 				//p_starVelInBuffer->copyFromBuffer(p_starVelOutBuffer.get(), m_numStars);
-				for ( int i = 0; i < m_numStars; ++i )
-				{
-					cl_float3 starPos = m_starPosArr[i];
-					cl_float3 starVel = m_starVelArr[i];
-
-					if ( starPos.x != starPos.x ||
-					starPos.y != starPos.y ||
-					starPos.z != starPos.z ||
-					starVel.x != starVel.x ||
-					starVel.y != starVel.y ||
-					starVel.z != starVel.z )
-					{
-						std::cout << "Something is not a number!" << i << std::endl;
-					}
-				}
 				incrementTimestepsDone();
 			}
 		}

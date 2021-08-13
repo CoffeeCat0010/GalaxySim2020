@@ -32,8 +32,8 @@ namespace Graphics{
 	
 	/* Start Temp Code */
 		int numStars = 8192;
-		Physics::Galaxy galaxy1 (numStars / 2, cl_float3{ 0.0f, -5000.0f, -3000.0f }, glm::vec3 (0.0f, 0.0f, 0.0f), glm::vec3 (0.0f, 5.0f, 0.0f), 2000.f, 150000000.f);
-		Physics::Galaxy galaxy2 (numStars / 2, cl_float3{ 0.0f, 5000.0f, -3000.0f }, glm::vec3 (0.0f, 0.5f, 0.0f), glm::vec3 (5.0f, -5.0f, 0.0f), 2000.f, 150000000.f);
+		Physics::Galaxy galaxy1 (numStars / 2, cl_float3{ 0.0f, 6000.0f, -3000.0f }, glm::vec3 (0.0f, 0.0f, 0.0f), glm::vec3 (0.0f, 5.0f, 0.0f), 2000.f, 150000000.f);
+		Physics::Galaxy galaxy2 (numStars / 2, cl_float3{ 0.0f, 3000.0f, -3000.0f }, glm::vec3 (0.0f, 0.5f, 0.0f), glm::vec3 (5.0f, -5.0f, 0.0f), 2000.f, 150000000.f);
 		
 		std::vector<cl_float3> starPos;
 		std::vector<cl_float3> starVel;

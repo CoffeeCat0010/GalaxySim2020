@@ -12,16 +12,18 @@ namespace IO
 		std::thread m_readThread;
 		std::ifstream m_fileStream;
 		std::string m_path;
+		
 
 		size_t m_sizePerReadinBytes;
+		size_t m_offsetInBytes;
 		uint32_t m_numBuffers;
 		bool threadShouldEnd;
 	public:
 		BufferStreamReaderMT ()
-			:m_path (""), m_sizePerReadinBytes (0), m_numBuffers (0), threadShouldEnd (true)
+			:m_path (""), m_offsetInBytes (0), m_sizePerReadinBytes (0), m_numBuffers (0), threadShouldEnd (true)
 		{}
-		BufferStreamReaderMT (const std::string& path, size_t sizePerReadinBytes, uint32_t numBuffers = 3, std::ios_base::openmode mode = std::ios::binary)
-			:m_path(path), m_fileStream (std::ifstream (path, std::ios::in | mode)), m_sizePerReadinBytes (sizePerReadinBytes), m_numBuffers(numBuffers), threadShouldEnd(false)
+		BufferStreamReaderMT (const std::string& path,size_t offsetInBytes, size_t sizePerReadinBytes, uint32_t numBuffers = 3, std::ios_base::openmode mode = std::ios::binary)
+			:m_path(path), m_offsetInBytes(offsetInBytes),  m_fileStream (std::ifstream (path, std::ios::in | mode)), m_sizePerReadinBytes (sizePerReadinBytes), m_numBuffers(numBuffers), threadShouldEnd(false)
 		{}
 		~BufferStreamReaderMT ()
 		{
@@ -71,6 +73,7 @@ namespace IO
 			bool end = threadShouldEnd;
 			m_threadControl.unlock();
 			T* buff = (T*)malloc(m_sizePerReadinBytes);
+			m_fileStream.seekg(m_offsetInBytes);
 			while (!m_fileStream.eof() && !end)
 			{
 				if(m_streamBuffers.size() < m_numBuffers)

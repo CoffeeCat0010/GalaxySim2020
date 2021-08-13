@@ -113,9 +113,6 @@
     <ClCompile Include="src\Graphics\Renderers\BatchPointRenderer.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Main.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Compute\Simulations\NBodySim.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -127,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SimulationProgress.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

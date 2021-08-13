@@ -31,7 +31,7 @@ namespace Graphics{
 
 
 		m_renderer = std::make_unique<BatchPointRenderer> (*m_program, size().width()/size().height());
-		rFile = std::shared_ptr<IO::StarFileMT>(IO::StarFileMT::readFile (m_simPath));//,
+		rFile = std::shared_ptr<IO::StarFileMT>(IO::StarFileMT::readFile (m_simPath));//, IO::StarFileMT::LEGACY));//,
 																																				//IO::StarFileMT::fileVersion::LEGACY));
 		timer.start();
 	}

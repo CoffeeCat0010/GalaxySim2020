@@ -32,7 +32,7 @@ namespace IO
 			result->m_header.numTimeSteps = inHeader[3];
 			result->m_header.stride = inHeader[4];
 		}
-		result->m_reader = std::make_unique<BufferStreamReaderMT<Vec3f>>(path, result->m_header.numStars * sizeof(Vec3f), 3, std::ios_base::binary);
+		result->m_reader = std::make_unique<BufferStreamReaderMT<Vec3f>>(path, result->m_header.offsetToFirst, result->m_header.numStars * sizeof(Vec3f), 3, std::ios_base::binary);
 		result->m_reader->startRead();
 		result->m_mode = READ;
 		return result;

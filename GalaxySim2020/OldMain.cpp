@@ -12,7 +12,7 @@
 #include "IO/DataFileType/StarFile.h"
 #include "Generation/Galaxy.h"
 #include <chrono>
-#include "Compute/CLprim/ComputeKernal.h"
+//#include "Compute/CLprim/ComputeKernel.h"
 #include "Compute/CLprim/ComputeProgram.h"
 #include "Math/MVec.h"
 
@@ -48,13 +48,14 @@ int main ()
 		cl_command_queue clcq = createCommandQueue (con, dID);
 
 		//cl_program clProgram = createProgram (con, dID, "src/Compute/Kernels/PhysKernel.cl");
-		std::unique_ptr<Compute::Program> program = Compute::Program::createProgram ("src/Compute/Kernels/PhysKernel.cl", con, dID);
-		std::unique_ptr<Compute::Kernel> kern = Compute::Kernel::createKernel (program->getProgramID (), "calcPos");
+		std::unique_ptr<Compute::Program> program = Compute::Program::createProgramU_Ptr ("src/Compute/Kernels/PhysKernel.cl", con, dID);
+		//std::unique_ptr<Compute::Kernel> kern = Compute::Kernel::createKernel (program->getProgramID (), "calcPos");
+		cl_kernel kern = clCreateKernel(program->getProgramID(), "calcPos", nullptr);
 		cl_int err;
 		//cl_kernel kern = clCreateKernel (program->getProgramID(), "calcPos", &err);
 
-		Physics::Galaxy galaxy1 (NUM_OF_STARS / 2, cl_float3{ 0.0f, -5000.0f, -3000.0f }, glm::vec3 (0.0f, 0.0f, 0.0f), glm::vec3 (0.0f, 5.0f, 0.0f), 2000.f, 150000000.f);
-		Physics::Galaxy galaxy2 (NUM_OF_STARS / 2, cl_float3{ 0.0f, -5000.0f, -3000.0f }, glm::vec3 (0.0f, 0.5f, 0.0f), glm::vec3 (5.0f, -5.0f, 0.0f), 2000.f, 150000000.f);
+		Physics::Galaxy galaxy1 (NUM_OF_STARS / 2, cl_float3{ 0.0f,  -3000.0f, -5000.0f }, glm::vec3 (0.0f, 0.0f, 0.0f), glm::vec3 (0.0f, 5.0f, 0.0f), 2000.f, 150000000.f);
+		Physics::Galaxy galaxy2 (NUM_OF_STARS / 2, cl_float3{ 0.0f,   3000.0f, -5000.0f }, glm::vec3 (0.0f, 0.5f, 0.0f), glm::vec3 (5.0f, -5.0f, 0.0f), 2000.f, 150000000.f);
 
 
 		cl_float3* stars = new cl_float3[NUM_OF_STARS];
@@ -96,12 +97,12 @@ int main ()
 		std::shared_ptr<IO::StarFileMT> file (IO::StarFileMT::createFile ("Simulations/testFile.STAR", NUM_OF_STARS, NUM_TIME_STEPS));
 		for ( int i = 0; i < NUM_TIME_STEPS; i++ )
 		{
-			err = clSetKernelArg (kern->getKernel (), 0, sizeof (cl_mem), &buffers[0]);
-			err |= clSetKernelArg (kern->getKernel (), 1, sizeof (cl_mem), &buffers[1]);
-			err |= clSetKernelArg (kern->getKernel (), 2, sizeof (float), &softeningFactor);
-			err |= clSetKernelArg (kern->getKernel (), 3, sizeof (float), &timeStep);
-			err |= clSetKernelArg (kern->getKernel (), 4, sizeof (cl_mem), &buffers[2]);
-			err |= clSetKernelArg (kern->getKernel (), 5, sizeof (cl_mem), &buffers[3]);
+			err = clSetKernelArg  (kern/*->getKernel ()*/, 0, sizeof (cl_mem), &buffers[0]);
+			err |= clSetKernelArg (kern/*->getKernel ()*/, 1, sizeof (cl_mem), &buffers[1]);
+			err |= clSetKernelArg (kern/*->getKernel ()*/, 2, sizeof (float), &softeningFactor);
+			err |= clSetKernelArg (kern/*->getKernel ()*/, 3, sizeof (float), &timeStep);
+			err |= clSetKernelArg (kern/*->getKernel ()*/, 4, sizeof (cl_mem), &buffers[2]);
+			err |= clSetKernelArg (kern/*->getKernel ()*/, 5, sizeof (cl_mem), &buffers[3]);
 
 			if ( err != CL_SUCCESS )
 			{
@@ -111,7 +112,7 @@ int main ()
 			size_t globalWorkSize = NUM_OF_STARS;
 			size_t localWorkSize = 64;
 
-			err = clEnqueueNDRangeKernel (clcq, kern->getKernel (), 1, 0, &globalWorkSize, &localWorkSize, 0, NULL, NULL);
+			err = clEnqueueNDRangeKernel (clcq, kern/*->getKernel ()*/, 1, 0, &globalWorkSize, &localWorkSize, 0, NULL, NULL);
 			if ( err != CL_SUCCESS )
 			{
 				std::cout << "Couldn't execute Kernel!" << std::endl;
