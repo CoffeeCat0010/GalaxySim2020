@@ -6,19 +6,21 @@
 #define KM_PER_PARSEC 3.086E+13f
 
 #define AVRG_GALAXY_RADIUS 1.25E04f //in Parsecs
-#define DEFAULT_CENTER_MASS 1.5E9f // in solar masses This i about the mass of the milky way for simulations of a millions stars or less this will not make a significant difference
+#define DEFAULT_CENTER_MASS 1.5E9f // in solar masses
 
 namespace Physics
 {
 	class Galaxy
 	{
 	private:
-		glm::vec3 m_galaxyVelocity;
 		std::vector<cl_float3> m_starPos;
 		std::vector<float> m_StarMasses;
 		std::vector<cl_float3> m_starVelocities;
+		//TODO: change to Util::vec3f
 		cl_float3 m_galaxyPos;
 		glm::vec3 m_axisOfRotation;
+		glm::vec3 m_galaxyVelocity;
+
 		int m_numStars = 0;
 		float m_galaxyRadius;
 		float m_centerMass;

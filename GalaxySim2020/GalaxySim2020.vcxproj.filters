@@ -128,6 +128,30 @@
     <ClCompile Include="src\Main.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyTreeWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyTreeWidgetItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyCreationDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utility\Qt\Validators\uint64Validator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\GUI Components\QtGui\UtilityWidgets\TreePropertyItem.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GravObjView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GravObjItem.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GravObjItemModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Graphics\Renderers\BatchRenderer.h">
@@ -173,9 +197,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\IO\Logger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Math\MVec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Event\MouseEventHandlers.h">
@@ -250,9 +271,6 @@
     <ClInclude Include="src\Graphics\Renderers\BatchPointRenderer.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Math\Bits.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Compute\CLprim\ComputeProgram.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -283,6 +301,21 @@
     <ClInclude Include="src\Compute\ComputeLayer.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Generation\GalaxyParams.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utility\Math\Bits.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utility\Math\MVec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GravObjItem.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utility\algorithmUtil.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GeneratedFiles\moc_predefs.h.cbt">
@@ -307,6 +340,27 @@
     <QtMoc Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SimulationProgress.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyTreeWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyTreeWidgetItem.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyCreationDialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\Utility\Qt\Validators\uint64Validator.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\Graphics\GUI Components\QtGui\UtilityWidgets\TreePropertyItem.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GravObjView.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GravObjItemModel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="src\Graphics\GUI Components\QtGui\MainWindow\MainWindow.ui">
@@ -319,6 +373,15 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SimulationProgress.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyTreeWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyCreationDialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GravObjView.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

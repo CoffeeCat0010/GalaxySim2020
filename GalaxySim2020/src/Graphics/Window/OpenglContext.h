@@ -1,13 +1,13 @@
 #pragma once
 #include "Corepch.h"
-#include "Math/MVec.h"
+#include "Utility/Math/MVec.h"
 
 namespace Graphics
 {
 	class IOpenglContext
 	{
 	protected:
-		Application::Vec2i m_contextDim;
+		Util::Vec2i m_contextDim;
 	public:
 		IOpenglContext(int32_t sizeX, int32_t sizeY)
 			:m_contextDim ({sizeX, sizeY})

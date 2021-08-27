@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GalaxyCreationDialog</class>
+ <widget class="QDialog" name="GalaxyCreationDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>545</width>
+    <height>315</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>GalaxyCreationDialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="p_posAndRotGrp">
+     <property name="title">
+      <string>Position and Rotation</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="p_zPosLEdit">
+        <property name="toolTip">
+         <string>This is front to back coordinate. The 
+screen is at 0 and max is 10,000. 
+Units [Parsecs]</string>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="p_yPosLEdit">
+        <property name="toolTip">
+         <string>The up and down cordinate. Negative 
+values are down and positive are up. 
+ Units: [Parsecs]</string>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="p_yPosLabel">
+        <property name="text">
+         <string>Position Y:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="p_xPosLEdit">
+        <property name="toolTip">
+         <string>The left and right cordinate. Negative 
+values are left and positive are right. 
+ Units: [Parsecs]</string>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="p_xRotLabel">
+        <property name="text">
+         <string>X Rotation:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="p_zPosLabel">
+        <property name="text">
+         <string>Position Z:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="p_zRotLabel">
+        <property name="text">
+         <string>Z Rotation:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="p_yRotLabel">
+        <property name="text">
+         <string>Y Rotation:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="p_xPosLabel">
+        <property name="text">
+         <string>Position X:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QDoubleSpinBox" name="p_xRotDSBox">
+        <property name="toolTip">
+         <string>0 degrees of rotation for x, y, and z
+corrisponds to the axis of rotation 
+coming out of the screen.
+Units: Degrees  </string>
+        </property>
+        <property name="suffix">
+         <string>°</string>
+        </property>
+        <property name="minimum">
+         <double>-179.990000000000009</double>
+        </property>
+        <property name="maximum">
+         <double>179.990000000000009</double>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QDoubleSpinBox" name="p_yRotDSBox">
+        <property name="toolTip">
+         <string>0 degrees of rotation for x, y, and z
+corrisponds to the axis of rotation 
+coming out of the screen.
+Units: Degrees  </string>
+        </property>
+        <property name="suffix">
+         <string>°</string>
+        </property>
+        <property name="minimum">
+         <double>-179.990000000000009</double>
+        </property>
+        <property name="maximum">
+         <double>179.990000000000009</double>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QDoubleSpinBox" name="p_zRotDSBox">
+        <property name="toolTip">
+         <string>0 degrees of rotation for x, y, and z
+corrisponds to the axis of rotation 
+coming out of the screen.
+Units: Degrees  </string>
+        </property>
+        <property name="suffix">
+         <string>°</string>
+        </property>
+        <property name="minimum">
+         <double>-179.990000000000009</double>
+        </property>
+        <property name="maximum">
+         <double>179.990000000000009</double>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="p_GalSettingsGrp">
+     <property name="title">
+      <string>Galaxy dimensions</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="p_galDiameterLEdit">
+        <property name="toolTip">
+         <string>Units: [Parsecs]</string>
+        </property>
+        <property name="text">
+         <string>12500</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="p_centMassCombo">
+        <item>
+         <property name="text">
+          <string>Yes</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>No</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="p_galDiameterLabel">
+        <property name="text">
+         <string>Diameter:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="p_massOfCentLabel">
+        <property name="text">
+         <string>Mass of central mass:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="p_centMassLabel">
+        <property name="text">
+         <string>Central mass:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLineEdit" name="p_massOfCentMassLEdit">
+        <property name="toolTip">
+         <string>Units: Millions of solar masses</string>
+        </property>
+        <property name="text">
+         <string>1500</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="p_starSettingsGrp">
+     <property name="title">
+      <string>Star Settings</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="p_numStarLEdit">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Number of stars in the galaxy.&lt;/p&gt;&lt;p&gt;For performance reasons it is better&lt;/p&gt;&lt;p&gt;to use powers of two.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="inputMask">
+         <string/>
+        </property>
+        <property name="text">
+         <string>8192</string>
+        </property>
+        <property name="placeholderText">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="p_numStarsLabel">
+        <property name="text">
+         <string>Number of Stars:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QDoubleSpinBox" name="p_starMassDSBox">
+        <property name="toolTip">
+         <string>Mass in solar masses</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="p_starMassLabel">
+        <property name="text">
+         <string>Mass of stars:</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="p_buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="p_warnLabel">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>p_buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>GalaxyCreationDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>412</x>
+     <y>273</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>426</x>
+     <y>349</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

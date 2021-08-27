@@ -6,7 +6,8 @@ __kernel void calcPos (__global const float3* positions,
 											 const float softeningFactor,
 											 const float timeStep,
 											 __global float3* velocities,
-											 __global float3* result)
+											 __global float3* result,
+											 __global float3* resultVel)
 {
 	int gid = get_global_id (0);
 	float3 workStarPos = positions[gid];
@@ -63,6 +64,6 @@ __kernel void calcPos (__global const float3* positions,
 
 	result[gid] = resultPos;
 
-	velocities[gid] = newVelocity;
+	resultVel[gid] = newVelocity;
 
 }

@@ -11,7 +11,7 @@
 #include "IO/GSIO.h" 
 #include "IO/DataFileType/StarFileMT.h"
 #include "Generation/Galaxy.h"
-#include "Math/MVec.h"
+#include "Utility/Math/MVec.h"
 
 namespace Graphics{
 	class GraphicsLayer: public Application::Layer,
@@ -53,7 +53,7 @@ namespace Graphics{
 			m_OGLcontext->makeOGLContextCurrent();
 			std::shared_ptr<IO::StarFileMT> rFile (
 				(IO::StarFileMT::readFile ("./Simulations/testFile.STAR", IO::StarFileMT::fileVersion::LEGACY)));
-			Application::Vec3f* test = new Application::Vec3f[NUM_OF_STARS];
+			Util::Vec3f* test = new Util::Vec3f[NUM_OF_STARS];
 			Graphics::Star* gStars = new Graphics::Star[NUM_OF_STARS];
 			for ( int i = 0; i < NUM_OF_STARS; i++ )
 			{
@@ -77,7 +77,7 @@ namespace Graphics{
 					glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 					//rFile->readTimeStep((glm::vec3*)test, NUM_OF_STARS);
 
-					std::vector<Application::Vec3f> vec (rFile->getTimeStep ());
+					std::vector<Util::Vec3f> vec (rFile->getTimeStep ());
 					for ( int j = 0; j < NUM_OF_STARS; j++ )
 					{
 						gStars[j].setPos ((glm::vec3&)vec[j]);

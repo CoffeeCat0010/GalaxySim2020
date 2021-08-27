@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include <QCloseEvent>
 #include <QFileDialog>
+#include <QPointer>
 #include "QTGenerated/uic/ui_MainWindow.h"
 #include "Graphics/Window/OpenglContext.h"
 #include "Graphics/Window/Window.h"
@@ -12,15 +13,15 @@
 #include "Graphics/GUI Components/QtGui/SimulationWidget/SimulationWidget.h"
 #include "CL/cl.hpp"
 
-namespace Graphics{
-	class MainWindow : public QMainWindow, public Ui::MainWindow, public IWindow, public IOpenglContext
+namespace QUI{
+	class MainWindow : public QMainWindow, public Ui::MainWindow, public Graphics::IWindow, public Graphics::IOpenglContext
 	{
 		Q_OBJECT
 	private:
 		std::weak_ptr<Application::EventDispatcher> m_dispatcher;
 		std::vector<Compute::Platform> m_platforms;
 		uint32_t m_currPlatformIndex;
-		CustomOpenGlWidget* m_ogl_widget;
+		QPointer<CustomOpenGlWidget> m_ogl_widget;
 		std::shared_ptr<Compute::Context> m_clContext;
 		Compute::DeviceType m_selectedDeviceType;
 		std::vector<std::shared_ptr<Compute::Device>> m_availableDevices;

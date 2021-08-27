@@ -2,7 +2,7 @@
 #include "Corepch.h"
 #include "CL/cl.hpp"
 #include "glm/glm.hpp"
-namespace Application
+namespace Util
 {
 	// This is here mostly to decouple from the glm library. I want to limit use of glm in case I decide to change libraries.
 	struct Vec2i

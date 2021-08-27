@@ -4,7 +4,7 @@
 #include <array>
 #include "../../IO/Logger.h"
 #include "CL/cl.hpp"
-#include "Math/Bits.h"
+#include "Utility/Math/Bits.h"
 #include "Compute/CLprim/ComputeContext.h"
 namespace Compute
 {
@@ -119,7 +119,6 @@ namespace Compute
 		}
 
 		inline const cl_mem getMemBuffer () const { return m_memBuffer; }
-		inline void** getMemBufferRef() const {return (void**)&m_memBuffer;}
 	};
 }
 

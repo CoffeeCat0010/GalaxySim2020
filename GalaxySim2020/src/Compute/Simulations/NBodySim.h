@@ -2,6 +2,7 @@
 #include "Corepch.h"
 #include "IO/DataFileType/StarFileMT.h"
 #include "Compute/CLprim/CLPrim.h"
+#include "Utility/Math/MVec.h"
 namespace Compute
 {
 	class NBodySim

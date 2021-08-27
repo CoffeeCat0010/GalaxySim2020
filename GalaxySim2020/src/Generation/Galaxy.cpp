@@ -6,8 +6,8 @@
 namespace Physics
 {
 	Galaxy::Galaxy (int numStars, cl_float3 galaxyPos, glm::vec3 axisOfRotation, glm::vec3 velocity,float radius, float centerMass)
-		:m_galaxyVelocity(velocity), m_starPos(std::vector<cl_float3>()), m_StarMasses (std::vector<float> ()), m_starVelocities (std::vector<cl_float3> ()),
-		m_galaxyPos(galaxyPos), m_axisOfRotation(axisOfRotation), m_numStars(numStars), m_galaxyRadius(radius), m_centerMass(centerMass)
+		:m_starPos(std::vector<cl_float3>()), m_StarMasses (std::vector<float> ()), m_starVelocities (std::vector<cl_float3> ()),
+		m_galaxyPos(galaxyPos), m_galaxyVelocity (velocity), m_axisOfRotation(axisOfRotation), m_numStars(numStars), m_galaxyRadius(radius), m_centerMass(centerMass)
 	{
 		placeStars (axisOfRotation);
 	}

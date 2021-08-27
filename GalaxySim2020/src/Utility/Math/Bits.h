@@ -1,7 +1,7 @@
 #pragma once
 #include <Corepch.h>
 
-namespace Application
+namespace Util
 {
 	inline bool bitIsSet (uint64_t number, uint32_t bit)
 	{

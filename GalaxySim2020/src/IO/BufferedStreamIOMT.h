@@ -57,6 +57,10 @@ namespace IO
 		{
 			std::lock_guard<std::mutex> lock (m_readMutex);
 			// occasional problem here caused by streambuffers not being checked if empty
+			if ( m_streamBuffers.empty () )
+			{
+				return std::vector<T>();
+			}
 			std::vector<T> result = m_streamBuffers.front();
 			m_streamBuffers.pop();
 			return result;

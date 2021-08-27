@@ -43,20 +43,38 @@ namespace Compute
 			clReleaseKernel (m_kernel);
 		}
 		template <typename T>
-		inline bool setKernelArg (uint32_t pos, const T* data)
+		inline bool setKernelArg (uint32_t pos, const T& data)
 		{
 			int err = clSetKernelArg(m_kernel, pos, sizeof(T), &data);
 			LOG_ERROR_IF("Could not set kernal argument! " + std::to_string(err), err != CL_SUCCESS );
 			return err != CL_SUCCESS;
 		}
-
-		template<typename T>
-		inline bool setKernelMemBufferArg (uint32_t pos, const MemBuffer<T>* data)
+		template <>
+		inline bool setKernelArg<cl_mem> (uint32_t pos, const cl_mem& data)
 		{
-			int err = clSetKernelArg (m_kernel, pos, sizeof (cl_mem), data->getMemBufferRef());
+			int err = clSetKernelArg (m_kernel, pos, sizeof (cl_mem), &data);
 			LOG_ERROR_IF ("Could not set kernal argument! " + std::to_string (err), err != CL_SUCCESS);
 			return err != CL_SUCCESS;
 		}
+
+		template <>
+		inline bool setKernelArg<MemBuffer<float>> (uint32_t pos, const MemBuffer<float>& data)
+		{
+			cl_mem memRef = data.getMemBuffer ();
+			int err = clSetKernelArg (m_kernel, pos, sizeof (cl_mem), &memRef);
+			LOG_ERROR_IF ("Could not set kernal argument! " + std::to_string (err), err != CL_SUCCESS);
+			return err != CL_SUCCESS;
+		}
+
+		template <>
+		inline bool setKernelArg<MemBuffer<cl_float3>> (uint32_t pos, const MemBuffer<cl_float3>& data)
+		{
+			cl_mem memRef = data.getMemBuffer();
+			int err = clSetKernelArg (m_kernel, pos, sizeof (cl_mem), &memRef);
+			LOG_ERROR_IF ("Could not set kernal argument! " + std::to_string (err), err != CL_SUCCESS);
+			return err != CL_SUCCESS;
+		}
+
 		/// <summary>
 		/// Getter for the opencl kernel
 		/// </summary>

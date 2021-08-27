@@ -2,7 +2,7 @@
 namespace IO
 {
 	#define CURRENT_VER VER_1_0
-	typedef Application::Vec3f Vec3f;
+	typedef Util::Vec3f Vec3f;
 
 	StarFileMT::StarFileMT ()
 	: m_mode(NONE)

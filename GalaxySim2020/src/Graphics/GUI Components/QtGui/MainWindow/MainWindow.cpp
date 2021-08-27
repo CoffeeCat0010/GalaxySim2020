@@ -1,21 +1,22 @@
 #include "MainWindow.h"
 #include <QSizePolicy>
 #include "Event/ApplicationEvents.h"
-namespace Graphics
+namespace QUI
 {
 	MainWindow::MainWindow (std::weak_ptr<Application::EventDispatcher> dispatcher, QWidget* parent)
-		: m_dispatcher (dispatcher), m_platforms (Compute::Platform::getPlatforms ()), m_currPlatformIndex (0), m_currDeviceIndex (), QMainWindow (parent), IWindow (1280, 720),
-		IOpenglContext (1280, 720)
+		: m_dispatcher (dispatcher), m_platforms (Compute::Platform::getPlatforms ()), m_currPlatformIndex (0), m_currDeviceIndex (), QMainWindow (parent), Graphics::IWindow (1280, 720),
+		Graphics::IOpenglContext (1280, 720)
 	{
 		setupUi (this);
 		for ( int i = 0; i < m_platforms.size (); ++i )
 			Platform_select->addItem (m_platforms[i].getPlatformName ().c_str ());
 		m_selectedDeviceType = strToDeviceMap.find (Device_Type_Select->currentText ())->second;
-
+		
 	}
 
 	MainWindow::~MainWindow ()
-	{}
+	{
+	}
 
 	void MainWindow::pollEvents ()
 	{}
@@ -56,7 +57,7 @@ namespace Graphics
 
 	void MainWindow::onPlaySimulationTriggered ()
 	{
-		if ( m_ogl_widget != nullptr )
+		if ( !m_ogl_widget.isNull())
 		{
 			m_ogl_widget->play ();
 			QCoreApplication::sendEvent (m_ogl_widget, new QPaintEvent (m_ogl_widget->rect ()));
@@ -64,7 +65,7 @@ namespace Graphics
 	}
 	void MainWindow::onPauseSimulationTriggered ()
 	{
-		if ( m_ogl_widget != nullptr )
+		if ( !m_ogl_widget.isNull () )
 		{
 			m_ogl_widget->pause ();
 			QCoreApplication::sendEvent (m_ogl_widget, new QPaintEvent (m_ogl_widget->rect ()));
@@ -74,8 +75,13 @@ namespace Graphics
 	void MainWindow::onLoadSimulationTriggered ()
 	{
 		std::string pathToSim = QFileDialog::getOpenFileName (this, "Open Simulation", "./Simulations").toStdString ();
-		m_ogl_widget = new CustomOpenGlWidget (pathToSim, splitter->widget (1));
 		QHBoxLayout* layout = qobject_cast<QHBoxLayout*>(splitter->widget (1)->layout ());
+		if ( !m_ogl_widget.isNull () )
+		{
+			m_ogl_widget->hide();
+			layout->removeWidget(m_ogl_widget);
+		}
+		m_ogl_widget = new CustomOpenGlWidget (pathToSim, splitter->widget (1));
 		splitter->setSizes ({ 240, 1040 });
 		layout->addWidget (m_ogl_widget);
 		m_ogl_widget->show ();

@@ -1,10 +1,11 @@
 #include "Corepch.h"
 #include "SimulationWidget.h"
-namespace Graphics{
+namespace QUI{
 	SimulationWidget::SimulationWidget(std::shared_ptr<Compute::Context> con, std::shared_ptr<Compute::Device> device, QWidget *parent)
-		: QWidget(parent), p_con(con), p_device(device)
+		: QWidget(parent), p_con(con), p_device(device), p_validator(new QIntValidator(0, INT_MAX, this))
 	{
 		setupUi(this);
+		timeStepsLine->setValidator(p_validator);
 	}
 	
 	SimulationWidget::~SimulationWidget()
@@ -21,17 +22,12 @@ namespace Graphics{
 	{
 
 		uint32_t timeSteps;
-		bool validTimeSteps;
-		timeSteps = timeStepsLine->text().toInt(&validTimeSteps, 10);
-		if ( !validTimeSteps )
-		{
-			//TODO: Add Dialog to explain what happened
-			return;
-		}
+		//Validation not necessary here since QIntValidator added at construction
+		timeSteps = timeStepsLine->text().toInt(nullptr, 10);
 	
 	
 	/* Start Temp Code */
-		int numStars = 8192;
+		int numStars = 49152;
 		Physics::Galaxy galaxy1 (numStars / 2, cl_float3{ 0.0f, -3000.0f, -5000.0f }, glm::vec3 (0.0f, 0.0f, 0.0f), glm::vec3 (0.0f, 5.0f, 0.0f), 2000.f, 150000000.f);
 		Physics::Galaxy galaxy2 (numStars / 2, cl_float3{ 0.0f,  3000.0f, -5000.0f }, glm::vec3 (0.0f, 0.5f, 0.0f), glm::vec3 (5.0f, -5.0f, 0.0f), 2000.f, 150000000.f);
 		
@@ -47,12 +43,18 @@ namespace Graphics{
 		starMasses.insert (starMasses.begin (), galaxy2.getStarMasses ().begin (), galaxy2.getStarMasses ().end ());
 
 		/* End Temp Code*/
+		QVBoxLayout* scrollBoxLayout = qobject_cast<QVBoxLayout*>(scrollAreaWidgetContents->layout ());
 
+		if ( !p_progress.isNull () )
+		{
+			p_progress->hide();
+			scrollBoxLayout->removeWidget(p_progress);
+		}
 		p_sim = std::make_shared<Compute::NBodySim>(numStars, timeSteps, FilePath->text().toStdString(),
 																								starPos, starVel, starMasses, p_con, p_device);
 		p_sim->run();
 		p_progress = QPointer<SimulationProgress>(new SimulationProgress(p_sim, this));
-		scrollLayout->addWidget(p_progress);
+		scrollBoxLayout->addWidget(p_progress);
 		p_progress->show();
 	}
 

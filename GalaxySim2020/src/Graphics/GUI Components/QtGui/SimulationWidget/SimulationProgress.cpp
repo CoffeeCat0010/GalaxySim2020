@@ -1,6 +1,6 @@
 #include "Corepch.h"
 #include "SimulationProgress.h"
-namespace Graphics{
+namespace QUI{
 	SimulationProgress::SimulationProgress(std::weak_ptr<Compute::NBodySim> sim, QWidget *parent)
 		: QWidget(parent), m_sim(sim)
 	{
@@ -11,6 +11,7 @@ namespace Graphics{
 		m_numTimeSteps = l_sim->getNumTimesteps ();
 		progressBar->setRange(0, m_numTimeSteps);
 		m_timer->start(16);
+		m_Etimer.start();
 	}
 	
 	SimulationProgress::~SimulationProgress()
@@ -23,7 +24,17 @@ namespace Graphics{
 		std::shared_ptr<Compute::NBodySim> l_sim = m_sim.lock();
 		int32_t timeStepsDone = l_sim->getTimestepsDone ();
 		progressBar->setValue(timeStepsDone);
+		if ( timeStepsDone == m_numTimeSteps )
+		{
+			float timeElapsed = (float)(m_Etimer.elapsed () / 1000);
+			ProgressInfoLabel->setText (QString::number (timeStepsDone) + " of " + QString::number (m_numTimeSteps) + " done in\n " +
+																	QString::number (timeElapsed) + " seconds!");
+			disconnect (m_timer, &QTimer::timeout, this, &SimulationProgress::updateProgress);
+		}
+		else 
+		{
 		ProgressInfoLabel->setText(QString::number(timeStepsDone) + " of " + QString::number(m_numTimeSteps) + " done!" );
 		m_timer->start(16);
+	  }
 	}
 }

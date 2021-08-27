@@ -1,6 +1,6 @@
 #pragma once
 #include "Corepch.h"
-#include "Math/MVec.h"
+#include "Utility/Math/MVec.h"
 #include "IO/BufferedStreamIOMT.h"
 namespace IO
 {
@@ -14,7 +14,7 @@ namespace IO
 		};
 
 	private:
-		typedef Application::Vec3f Vec3f;
+		typedef Util::Vec3f Vec3f;
 		enum OpenMode
 		{
 			READ, WRITE, NONE
@@ -40,7 +40,10 @@ namespace IO
 		void writeTimeStep (const Vec3f* data);
 		void writeTimeStep (const std::vector<Vec3f>& data);
 		std::vector<Vec3f> getTimeStep();
+		
 		inline uint64_t getNumStars() {return m_header.numStars;};
+		inline uint64_t getNumTimeSteps () { return m_header.numTimeSteps; };
+
 	private:
 		StarFileMT ();
 	public:

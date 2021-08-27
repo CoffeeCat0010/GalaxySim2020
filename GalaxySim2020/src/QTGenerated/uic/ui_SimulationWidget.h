@@ -12,10 +12,14 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QFormLayout>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
+#include <QtWidgets/QTreeView>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -23,62 +27,87 @@ QT_BEGIN_NAMESPACE
 class Ui_SimulationWidget
 {
 public:
+    QVBoxLayout *verticalLayout_2;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
-    QWidget *formLayoutWidget;
+    QVBoxLayout *verticalLayout;
+    QFrame *line;
     QFormLayout *scrollLayout;
+    QLabel *timeStepsInputLabel;
+    QLineEdit *timeStepsLine;
     QPushButton *SaveAsButton;
     QLineEdit *FilePath;
     QPushButton *RunSimulation;
-    QLineEdit *timeStepsLine;
-    QLabel *label;
+    QTreeView *p_gravObjView;
 
     void setupUi(QWidget *SimulationWidget)
     {
         if (SimulationWidget->objectName().isEmpty())
             SimulationWidget->setObjectName(QString::fromUtf8("SimulationWidget"));
-        SimulationWidget->resize(400, 300);
+        SimulationWidget->resize(397, 300);
+        SimulationWidget->setContextMenuPolicy(Qt::NoContextMenu);
+        verticalLayout_2 = new QVBoxLayout(SimulationWidget);
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         scrollArea = new QScrollArea(SimulationWidget);
         scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
-        scrollArea->setGeometry(QRect(0, 0, 321, 291));
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 319, 289));
-        formLayoutWidget = new QWidget(scrollAreaWidgetContents);
-        formLayoutWidget->setObjectName(QString::fromUtf8("formLayoutWidget"));
-        formLayoutWidget->setGeometry(QRect(0, 0, 311, 281));
-        scrollLayout = new QFormLayout(formLayoutWidget);
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 377, 280));
+        verticalLayout = new QVBoxLayout(scrollAreaWidgetContents);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        line = new QFrame(scrollAreaWidgetContents);
+        line->setObjectName(QString::fromUtf8("line"));
+        line->setFrameShape(QFrame::VLine);
+        line->setFrameShadow(QFrame::Sunken);
+
+        verticalLayout->addWidget(line);
+
+        scrollLayout = new QFormLayout();
         scrollLayout->setSpacing(6);
-        scrollLayout->setContentsMargins(11, 11, 11, 11);
         scrollLayout->setObjectName(QString::fromUtf8("scrollLayout"));
-        scrollLayout->setContentsMargins(0, 0, 0, 0);
-        SaveAsButton = new QPushButton(formLayoutWidget);
+        timeStepsInputLabel = new QLabel(scrollAreaWidgetContents);
+        timeStepsInputLabel->setObjectName(QString::fromUtf8("timeStepsInputLabel"));
+
+        scrollLayout->setWidget(1, QFormLayout::LabelRole, timeStepsInputLabel);
+
+        timeStepsLine = new QLineEdit(scrollAreaWidgetContents);
+        timeStepsLine->setObjectName(QString::fromUtf8("timeStepsLine"));
+        timeStepsLine->setToolTipDuration(-1);
+
+        scrollLayout->setWidget(1, QFormLayout::FieldRole, timeStepsLine);
+
+        SaveAsButton = new QPushButton(scrollAreaWidgetContents);
         SaveAsButton->setObjectName(QString::fromUtf8("SaveAsButton"));
 
-        scrollLayout->setWidget(1, QFormLayout::LabelRole, SaveAsButton);
+        scrollLayout->setWidget(2, QFormLayout::LabelRole, SaveAsButton);
 
-        FilePath = new QLineEdit(formLayoutWidget);
+        FilePath = new QLineEdit(scrollAreaWidgetContents);
         FilePath->setObjectName(QString::fromUtf8("FilePath"));
 
-        scrollLayout->setWidget(1, QFormLayout::FieldRole, FilePath);
+        scrollLayout->setWidget(2, QFormLayout::FieldRole, FilePath);
 
-        RunSimulation = new QPushButton(formLayoutWidget);
+        RunSimulation = new QPushButton(scrollAreaWidgetContents);
         RunSimulation->setObjectName(QString::fromUtf8("RunSimulation"));
 
-        scrollLayout->setWidget(2, QFormLayout::SpanningRole, RunSimulation);
+        scrollLayout->setWidget(3, QFormLayout::SpanningRole, RunSimulation);
 
-        timeStepsLine = new QLineEdit(formLayoutWidget);
-        timeStepsLine->setObjectName(QString::fromUtf8("timeStepsLine"));
+        p_gravObjView = new QTreeView(scrollAreaWidgetContents);
+        p_gravObjView->setObjectName(QString::fromUtf8("p_gravObjView"));
 
-        scrollLayout->setWidget(0, QFormLayout::FieldRole, timeStepsLine);
+        scrollLayout->setWidget(0, QFormLayout::SpanningRole, p_gravObjView);
 
-        label = new QLabel(formLayoutWidget);
-        label->setObjectName(QString::fromUtf8("label"));
 
-        scrollLayout->setWidget(0, QFormLayout::LabelRole, label);
+        verticalLayout->addLayout(scrollLayout);
 
         scrollArea->setWidget(scrollAreaWidgetContents);
+
+        verticalLayout_2->addWidget(scrollArea);
+
 
         retranslateUi(SimulationWidget);
         QObject::connect(RunSimulation, SIGNAL(clicked()), SimulationWidget, SLOT(onRunSimulationClicked()));
@@ -90,9 +119,12 @@ public:
     void retranslateUi(QWidget *SimulationWidget)
     {
         SimulationWidget->setWindowTitle(QCoreApplication::translate("SimulationWidget", "SimulationWidget", nullptr));
+        timeStepsInputLabel->setText(QCoreApplication::translate("SimulationWidget", "Number of Time Steps:", nullptr));
+#if QT_CONFIG(tooltip)
+        timeStepsLine->setToolTip(QCoreApplication::translate("SimulationWidget", "Number of Time steps", nullptr));
+#endif // QT_CONFIG(tooltip)
         SaveAsButton->setText(QCoreApplication::translate("SimulationWidget", "Save As...", nullptr));
         RunSimulation->setText(QCoreApplication::translate("SimulationWidget", "Run Simulation", nullptr));
-        label->setText(QCoreApplication::translate("SimulationWidget", "Number of Time Steps:", nullptr));
     } // retranslateUi
 
 };

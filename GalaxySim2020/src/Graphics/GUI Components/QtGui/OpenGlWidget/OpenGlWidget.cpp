@@ -1,7 +1,8 @@
 #include "OpenGlWidget.h"
-namespace Graphics{
+namespace QUI{
 	CustomOpenGlWidget::CustomOpenGlWidget (std::string simPath, QWidget *parent)
-		:isPaused(true), m_simPath(simPath), QOpenGLWidget (parent), IOpenglContext(1280, 720)
+		:isPaused(true), m_simPath(simPath), QOpenGLWidget (parent), IOpenglContext(1280, 720),
+		m_numTimeSteps(0), m_numStars(0)
 	{
 		setupUi(this);
 	}
@@ -30,37 +31,41 @@ namespace Graphics{
 
 
 
-		m_renderer = std::make_unique<BatchPointRenderer> (*m_program, size().width()/size().height());
-		rFile = std::shared_ptr<IO::StarFileMT>(IO::StarFileMT::readFile (m_simPath));//, IO::StarFileMT::LEGACY));//,
-																																				//IO::StarFileMT::fileVersion::LEGACY));
+		m_renderer = std::make_unique<Graphics::BatchPointRenderer> (*m_program, size().width()/size().height());
+		rFile = std::shared_ptr<IO::StarFileMT>(IO::StarFileMT::readFile (m_simPath));
+																																				
+		m_numStars = rFile->getNumStars();
+		m_numTimeSteps = rFile->getNumTimeSteps();
 		timer.start();
 	}
 	void CustomOpenGlWidget::paintGL ()
 	{
-		if (gTimeStep < NUM_TIME_STEPS )
+		if (gTimeStep < m_numTimeSteps )
 		{
 				/* Render here */
-//				std::cout << isPaused <<std::endl;
 			if ( (timer.nsecsElapsed()/1E-9) >= 1.0f / 60.0f )
 			{
 				glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 				if(!isPaused || m_lastTimeStep.empty()){
+				//tempary solution to slow producer problem
+					do{
 					m_lastTimeStep = (rFile->getTimeStep ());
-					for ( int j = 0; j < NUM_OF_STARS; j++ )
+					}while(m_lastTimeStep.empty());
+					for ( int j = 0; j < m_numStars; j++ )
 					{
 						m_renderer->addPoint ((glm::vec3&)m_lastTimeStep[j]);
 					}
+					gTimeStep++;
 				}
 				else
 				{
-					for ( int j = 0; j < NUM_OF_STARS; j++ )
+					for ( int j = 0; j < m_numStars; j++ )
 					{
 						m_renderer->addPoint ((glm::vec3& )m_lastTimeStep[j]);
 					}
 				}
 				m_renderer->render ();
 				update();
-				gTimeStep++;
 				timer.restart();
 			}
 		}
@@ -80,37 +85,4 @@ namespace Graphics{
 	void CustomOpenGlWidget::paint ()
 	{}
 
-//	void CustomOpenGlWidget::paintGL ()
-//	{
-//		if ( gTimeStep < NUM_TIME_STEPS )
-//		{
-//			/* Render here */
-////				std::cout << isPaused <<std::endl;
-//			if ( (timer.nsecsElapsed () / 1E-9) >= 1.0f / 60.0f )
-//			{
-//				glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//				//rFile->readTimeStep((glm::vec3*)test, NUM_OF_STARS);
-//				if ( !isPaused || m_lastTimeStep.empty () )
-//				{
-//					m_lastTimeStep = (rFile->getTimeStep ());
-//					for ( int j = 0; j < NUM_OF_STARS; j++ )
-//					{
-//						gStars[j].setPos ((glm::vec3&)m_lastTimeStep[j]);
-//						m_renderer->addMesh (gStars[j]);
-//					}
-//				}
-//				else
-//				{
-//					for ( int j = 0; j < NUM_OF_STARS; j++ )
-//					{
-//						m_renderer->addMesh (gStars[j]);
-//					}
-//				}
-//				m_renderer->render ();
-//				update ();
-//				gTimeStep++;
-//				timer.restart ();
-//			}
-//		}
-//	}
 }
