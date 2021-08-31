@@ -1,33 +1,119 @@
 #pragma once
 
 #include "Corepch.h"
+#include <QComboBox>
+#include <QSpinBox>
+#include <QDoubleSpinBox>
+#include <QTextEdit>
+#include <QStandardItem>
 #include <QVariant>
 
 namespace QUI{
-	class GravObjItem
+	template<class Widget>
+	class GravObjItem :public QStandardItem
+	{};
+
+	template<>
+	class GravObjItem<void> :public QStandardItem
 	{
-		const static enum NodeType {Internal, Leaf};
-		explicit GravObjItem(const std::vector<QVariant>& data, std::weak_ptr<GravObjItem> parent)
-		:m_itemData(data), p_parent(parent){};
+	public:
+		const static enum NodeType { Internal, Leaf };
+		const static enum EditorType { None, ComboBox, DoubleSpinBox, SpinBox, TextEdit };
 
-		void appendChild (GravObjItem* child);
-		void appendChild (std::shared_ptr<GravObjItem> child);
-		
-		std::shared_ptr<GravObjItem> child(int32_t row);
-		inline int32_t childCount() const { return m_childItems.size();}
-		inline int32_t columnCount() const {return m_itemData.size(); }
-		QVariant data(int32_t column) const;
-		int32_t row() const;
+		GravObjItem (const QIcon &icon, const QString& text)
+			:QStandardItem (icon, text), m_eType (None) {}
+		GravObjItem (const QString& text)
+			:QStandardItem(text), m_eType (None){}
 
-		inline std::weak_ptr<GravObjItem> parentItem() {return p_parent;}
+		int type() { return 1100; }
 
 	private: // Start Member Variables
-		std::vector<std::shared_ptr<GravObjItem>> m_childItems;
-		std::vector<QVariant> m_itemData;
+		NodeType m_nType;
+		EditorType m_eType;
+	};
 
-		//NodeType m_nodeType;
+	template<>
+	class GravObjItem<QComboBox> :public QStandardItem
+	{
+	public:
+		const static enum NodeType { Internal, Leaf };
+		const static enum EditorType { None, ComboBox, DoubleSpinBox, SpinBox, TextEdit };
 
-		std::weak_ptr<GravObjItem> p_parent;
+		GravObjItem (const QIcon& icon, const QString& text, QComboBox* editor )
+			:QStandardItem (icon, text), m_eType (ComboBox), m_editorDelegate (editor)
+		{}
+		GravObjItem (const QString& text, QComboBox* editor)
+			:QStandardItem (text), m_eType (ComboBox), m_editorDelegate(editor)
+		{}
+		int type () { return 1101; }
+
+	private: // Start Member Variables
+		NodeType m_nType;
+		EditorType m_eType;
+		QComboBox* m_editorDelegate;
+	};
+
+	template<>
+	class GravObjItem<QSpinBox> :public QStandardItem
+	{
+	public:
+		const static enum NodeType { Internal, Leaf };
+		const static enum EditorType { None, ComboBox, DoubleSpinBox, SpinBox, TextEdit };
+
+		GravObjItem (const QIcon& icon, const QString& text, QSpinBox* editor)
+			:QStandardItem (icon, text), m_eType (SpinBox), m_editorDelegate (editor)
+		{}
+		GravObjItem (const QString& text, QSpinBox* editor)
+			:QStandardItem (text), m_eType (SpinBox), m_editorDelegate (editor)
+		{}
+		int type () { return 1102; }
+
+	private: // Start Member Variables
+		NodeType m_nType;
+		EditorType m_eType;
+		QSpinBox* m_editorDelegate;
+	};
+
+	template<>
+	class GravObjItem<QDoubleSpinBox> :public QStandardItem
+	{
+	public:
+		const static enum NodeType { Internal, Leaf };
+		const static enum EditorType { None, ComboBox, DoubleSpinBox, SpinBox, TextEdit };
+
+		GravObjItem (const QIcon& icon, const QString& text, QDoubleSpinBox* editor)
+			:QStandardItem (icon, text), m_eType (DoubleSpinBox), m_editorDelegate (editor)
+		{}
+		GravObjItem (const QString& text, QDoubleSpinBox* editor)
+			:QStandardItem (text), m_eType (DoubleSpinBox), m_editorDelegate (editor)
+		{}
+		int type () override { return 1103; }
+
+	private: // Start Member Variables
+		NodeType m_nType;
+		EditorType m_eType;
+		QDoubleSpinBox* m_editorDelegate;
+	};
+
+	template<>
+	class GravObjItem<QTextEdit> :public QStandardItem
+	{
+	public:
+		const static enum NodeType { Internal, Leaf };
+		const static enum EditorType { None, ComboBox, DoubleSpinBox, SpinBox, TextEdit };
+
+		GravObjItem (const QIcon& icon, const QString& text, QTextEdit* editor)
+			:QStandardItem (icon, text), m_eType (TextEdit), m_editorDelegate (editor)
+		{}
+		GravObjItem (const QString& text, QTextEdit* editor)
+			:QStandardItem (text), m_eType (DoubleSpinBox), m_editorDelegate (editor)
+		{}
+		int type () override { return 1104; }
+
+	private: // Start Member Variables
+		NodeType m_nType;
+		EditorType m_eType;
+		QTextEdit* m_editorDelegate;
 	};
 }
 

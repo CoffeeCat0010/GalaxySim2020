@@ -16,11 +16,12 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
-#include <QtWidgets/QTreeView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GravObjView.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -38,13 +39,14 @@ public:
     QPushButton *SaveAsButton;
     QLineEdit *FilePath;
     QPushButton *RunSimulation;
-    QTreeView *p_gravObjView;
+    QUI::GravObjView *p_propertiesView;
+    QListView *p_gravObjView;
 
     void setupUi(QWidget *SimulationWidget)
     {
         if (SimulationWidget->objectName().isEmpty())
             SimulationWidget->setObjectName(QString::fromUtf8("SimulationWidget"));
-        SimulationWidget->resize(397, 300);
+        SimulationWidget->resize(397, 390);
         SimulationWidget->setContextMenuPolicy(Qt::NoContextMenu);
         verticalLayout_2 = new QVBoxLayout(SimulationWidget);
         verticalLayout_2->setSpacing(6);
@@ -55,7 +57,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 377, 280));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 377, 370));
         verticalLayout = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -73,33 +75,38 @@ public:
         timeStepsInputLabel = new QLabel(scrollAreaWidgetContents);
         timeStepsInputLabel->setObjectName(QString::fromUtf8("timeStepsInputLabel"));
 
-        scrollLayout->setWidget(1, QFormLayout::LabelRole, timeStepsInputLabel);
+        scrollLayout->setWidget(3, QFormLayout::LabelRole, timeStepsInputLabel);
 
         timeStepsLine = new QLineEdit(scrollAreaWidgetContents);
         timeStepsLine->setObjectName(QString::fromUtf8("timeStepsLine"));
         timeStepsLine->setToolTipDuration(-1);
 
-        scrollLayout->setWidget(1, QFormLayout::FieldRole, timeStepsLine);
+        scrollLayout->setWidget(3, QFormLayout::FieldRole, timeStepsLine);
 
         SaveAsButton = new QPushButton(scrollAreaWidgetContents);
         SaveAsButton->setObjectName(QString::fromUtf8("SaveAsButton"));
 
-        scrollLayout->setWidget(2, QFormLayout::LabelRole, SaveAsButton);
+        scrollLayout->setWidget(4, QFormLayout::LabelRole, SaveAsButton);
 
         FilePath = new QLineEdit(scrollAreaWidgetContents);
         FilePath->setObjectName(QString::fromUtf8("FilePath"));
 
-        scrollLayout->setWidget(2, QFormLayout::FieldRole, FilePath);
+        scrollLayout->setWidget(4, QFormLayout::FieldRole, FilePath);
 
         RunSimulation = new QPushButton(scrollAreaWidgetContents);
         RunSimulation->setObjectName(QString::fromUtf8("RunSimulation"));
 
-        scrollLayout->setWidget(3, QFormLayout::SpanningRole, RunSimulation);
+        scrollLayout->setWidget(5, QFormLayout::SpanningRole, RunSimulation);
 
-        p_gravObjView = new QTreeView(scrollAreaWidgetContents);
+        p_propertiesView = new QUI::GravObjView(scrollAreaWidgetContents);
+        p_propertiesView->setObjectName(QString::fromUtf8("p_propertiesView"));
+
+        scrollLayout->setWidget(2, QFormLayout::SpanningRole, p_propertiesView);
+
+        p_gravObjView = new QListView(scrollAreaWidgetContents);
         p_gravObjView->setObjectName(QString::fromUtf8("p_gravObjView"));
 
-        scrollLayout->setWidget(0, QFormLayout::SpanningRole, p_gravObjView);
+        scrollLayout->setWidget(1, QFormLayout::SpanningRole, p_gravObjView);
 
 
         verticalLayout->addLayout(scrollLayout);

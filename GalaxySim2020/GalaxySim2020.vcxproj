@@ -169,17 +169,15 @@
     </QtUic>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GravObjItem.cpp" />
+    <ClCompile Include="src\Graphics\GUI Components\QtGui\UtilityWidgets\PropertyItem.cpp" />
+    <ClCompile Include="src\Graphics\GUI Components\QtGui\UtilityWidgets\PropertyGroupItem.cpp" />
     <ClCompile Include="src\Compute\ComputeLayer.cpp" />
     <ClCompile Include="src\Compute\Simulations\NBodySim.cpp" />
     <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SimulationProgress.cpp" />
     <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SimulationWidget.cpp" />
     <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyCreationDialog.cpp" />
-    <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyTreeWidget.cpp" />
-    <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyTreeWidgetItem.cpp" />
-    <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GravObjItemModel.cpp" />
+    <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyItem.cpp" />
     <ClCompile Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GravObjView.cpp" />
-    <ClCompile Include="src\Graphics\GUI Components\QtGui\UtilityWidgets\TreePropertyItem.cpp" />
     <ClCompile Include="src\Graphics\Renderers\BatchPointRenderer.cpp" />
     <ClCompile Include="src\Graphics\GUI Components\QtGui\OpenGlWidget\OpenGlWidget.cpp" />
     <ClCompile Include="src\Graphics\GUI Components\QtGui\MainWindow\MainWindow.cpp" />
@@ -213,6 +211,8 @@
   <ItemGroup>
     <QtMoc Include="src\Graphics\GUI Components\QtGui\MainWindow\MainWindow.h" />
     <QtMoc Include="src\Graphics\GUI Components\QtGui\OpenGlWidget\OpenGlWidget.h" />
+    <ClInclude Include="src\Graphics\GUI Components\QtGui\UtilityWidgets\PropertyItem.h" />
+    <ClInclude Include="src\Graphics\GUI Components\QtGui\UtilityWidgets\PropertyGroupItem.h" />
     <ClInclude Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GravObjItem.h" />
     <ClInclude Include="src\Compute\CLprim\CLPrim.h" />
     <ClInclude Include="src\Compute\CLprim\ComputeCommandQueue.h" />
@@ -226,13 +226,10 @@
     <ClInclude Include="src\Compute\Simulations\NBodySim.h" />
     <QtMoc Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SimulationWidget.h" />
     <QtMoc Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SimulationProgress.h" />
-    <QtMoc Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyTreeWidget.h" />
-    <QtMoc Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyTreeWidgetItem.h" />
+    <ClInclude Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyItem.h" />
     <QtMoc Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyCreationDialog.h" />
     <ClInclude Include="src\Generation\GalaxyParams.h" />
-    <QtMoc Include="src\Graphics\GUI Components\QtGui\UtilityWidgets\TreePropertyItem.h" />
     <QtMoc Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GravObjView.h" />
-    <QtMoc Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GravObjItemModel.h" />
     <ClInclude Include="src\Graphics\Renderers\BatchPointRenderer.h" />
     <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\IO\BufferedStreamIOMT.h" />
@@ -293,6 +290,7 @@
   <ItemGroup>
     <None Include=".editorconfig" />
     <None Include="cpp.hint" />
+    <None Include="docs\index.rst" />
     <None Include="Main.cpp.old" />
   </ItemGroup>
   <ItemGroup>
@@ -301,7 +299,6 @@
     <QtUic Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SimulationProgress.ui" />
     <QtUic Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SimulationWidget.ui" />
     <QtUic Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyCreationDialog.ui" />
-    <QtUic Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyTreeWidget.ui" />
     <QtUic Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GravObjView.ui" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

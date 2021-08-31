@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
 	//entry->cleanUp();
 	std::shared_ptr<Application::EventDispatcher> dispatcher;
 	QApplication app(argc, argv);
-	Graphics::MainWindow mainWindow(dispatcher);
+	QUI::MainWindow mainWindow(dispatcher);
 	mainWindow.show();
 
 	return app.exec();
