@@ -101,6 +101,21 @@ namespace Compute
 			delete[] data;
 			return result;
 		}
+		/// <summary>
+		/// Tries to pull the specified amount of data from the buffer and put it into the specified array.
+		/// This overload is espically useful when you have a large amount of data that you want to go into
+		/// a pre-allocated array. The array must be of the same type as the objects stored in the memBuffer;
+		/// </summary>
+		/// <param name="maxElements">The expected amount of data in bytes to be pulled from the buffer</param>
+		/// <param name="arrOut">A pointer to the array where the data will be put.</param>
+		/// <param name="blocking"></param>
+		void pullFromBuffer (size_t maxElements, float* arrOut, bool blocking = true)
+		{
+			size_t sizeInBytes = sizeof (T) * maxElements;
+			std::shared_ptr<CommandQueue> l_cmdq = p_clcq.lock ();
+			cl_int err = clEnqueueReadBuffer (l_cmdq->getQueue (), m_memBuffer, blocking ? CL_TRUE : CL_FALSE, 0, sizeInBytes, arrOut, 0, NULL, NULL);
+			LOG_FATAL_IF ("Unable to fetch memory from buffer!", err != 0);
+		}
 
 		bool copyFromBuffer (const MemBuffer<T>* other, size_t numElements )
 		{
@@ -119,6 +134,7 @@ namespace Compute
 		}
 
 		inline const cl_mem getMemBuffer () const { return m_memBuffer; }
+		inline cl_mem* getMemBufferPtr () const { return &m_memBuffer; }
 	};
 }
 

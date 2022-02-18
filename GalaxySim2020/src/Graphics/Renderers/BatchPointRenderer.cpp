@@ -22,15 +22,31 @@ namespace Graphics
 			if (hasRoomForVerts)
 			{
 				hasFoundBatch = true;
-				b->emplace_back(point);
+				/*Temp*/
+				glm::vec3 res = point;
+				res.x -= 5000.0;
+				res.y -= 5000.0;
+				res.z -= 9000.0;
+				//res.x -= 1000.0;
+				//res.y -= 1000.0;
+				//res.z -= 2000.0;
+				b->emplace_back(res);
 			}
 		}
 		if ( !hasFoundBatch )
-		{
+		{ 
+			/*Temp*/
+			glm::vec3 res = point;
+			res.x -= 5000.0;
+			res.y -= 5000.0;
+			res.z -= 9000.0;
+			//res.x -= 1000.0;
+			//res.y -= 1000.0;
+			//res.z -= 2000.0;
 			m_batches.emplace_front (new batch ());
 			//todo think about writing a seperate helper function for the following section
 			m_batches.front ()->reserve (m_maxVerts);
-			m_batches.front ()->emplace_back(point);
+			m_batches.front ()->emplace_back(res);
 		}
 	}
 	void BatchPointRenderer::render ()

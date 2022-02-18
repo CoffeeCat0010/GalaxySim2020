@@ -45,7 +45,8 @@ namespace IO
 			str += "[MESSAGE] ";
 			break;
 		}
-		str += message;
-		this->log << str << "\n";
+		str += message + "\n";
+		this->log.write(str.c_str(), str.size());
+		this->log.flush();
 	}
 }

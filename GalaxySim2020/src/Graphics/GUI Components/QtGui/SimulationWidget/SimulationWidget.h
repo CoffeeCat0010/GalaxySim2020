@@ -10,6 +10,8 @@
 #include "Generation/Galaxy.h"
 #include "Compute/CLprim/CLPrim.h"
 #include "CL/cl.hpp"
+#include "Compute/SimulationObjects/SpatialGrid.h"
+#include "Compute/Simulations/NBodySimPM.h"
 namespace QUI{
 	class SimulationWidget : public QWidget, public Ui::SimulationWidget
 	{
@@ -17,8 +19,8 @@ namespace QUI{
 
 		std::shared_ptr<Compute::Context> p_con;
 		std::shared_ptr<Compute::Device> p_device;
-		std::shared_ptr<Compute::NBodySim> p_sim;
-		
+		std::shared_ptr<Compute::NBodySimPM> p_sim;
+		Compute::SpatialGrid* p_grid;
 		
 		QPointer<SimulationProgress> p_progress;
 		QPointer<QIntValidator> p_validator;

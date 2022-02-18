@@ -78,7 +78,7 @@
   </ImportGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;src;src\Vendor\inipp;src\Vendor;src\Vendor\opencl_nvidia\include;..\Dependencies\glew2.1.0\include;..\Dependencies\glfw-x64\include;./GeneratedFiles/$(ConfigurationName);/include;.\src\Graphics\GUI Components\QtGui\SimulationWidget;.\src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets;.\src\Utility\Qt\Validators;.\src\Graphics\GUI Components\QtGui\UtilityWidgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;src;src\Vendor\inipp;src\Vendor;src\Vendor\opencl_nvidia\include;..\Dependencies\glew2.1.0\include;..\Dependencies\glfw-x64\include;./GeneratedFiles/$(ConfigurationName);/include;.\src\Graphics\GUI Components\QtGui\SimulationWidget;.\src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets;.\src\Utility\Qt\Validators;.\src\Graphics\GUI Components\QtGui\UtilityWidgets;..\Dependencies\clFFT-Full-2.12.2-Windows-x64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -96,8 +96,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>.\src\Vendor\opencl_nvidia\lib\OpenCL.lib;$(SolutionDir)Dependencies\glew2.1.0\GLEW_x64\glew32s.lib;$(SolutionDir)Dependencies\glfw-x64\lib-vc2019\glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>.\src\Vendor\opencl_nvidia\lib;$(SolutionDir)Dependencies\glew2.1.0\GLEW_x64;$(SolutionDir)Dependencies\glfw-x64\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>.\src\Vendor\opencl_nvidia\lib\OpenCL.lib;$(SolutionDir)Dependencies\glew2.1.0\GLEW_x64\glew32s.lib;$(SolutionDir)Dependencies\glfw-x64\lib-vc2019\glfw3.lib;$(SolutionDir)Dependencies\clFFT-Full-2.12.2-Windows-x64\lib64\import\clFFT.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\src\Vendor\opencl_nvidia\lib;$(SolutionDir)Dependencies\glew2.1.0\GLEW_x64;$(SolutionDir)Dependencies\glfw-x64\lib-vc2019;$(SolutionDir)Dependencies\clFFT-Full-2.12.2-Windows-x64\lib64\import;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -122,7 +122,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;src;src\Vendor\inipp;src\Vendor;src\Vendor\opencl_nvidia\include;..\Dependencies\glew2.1.0\include;..\Dependencies\glfw-x64\include;./GeneratedFiles/$(ConfigurationName);/include;.\src\Graphics\GUI Components\QtGui\SimulationWidget;.\src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets;.\src\Utility\Qt\Validators;.\src\Graphics\GUI Components\QtGui\UtilityWidgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;src;src\Vendor\inipp;src\Vendor;src\Vendor\opencl_nvidia\include;..\Dependencies\glew2.1.0\include;..\Dependencies\glfw-x64\include;./GeneratedFiles/$(ConfigurationName);/include;.\src\Graphics\GUI Components\QtGui\SimulationWidget;.\src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets;.\src\Utility\Qt\Validators;.\src\Graphics\GUI Components\QtGui\UtilityWidgets;..\Dependencies\clFFT-Full-2.12.2-Windows-x64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -142,8 +142,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>.\src\Vendor\opencl_nvidia\lib\OpenCL.lib;$(SolutionDir)Dependencies\glew2.1.0\GLEW_x64\glew32s.lib;$(SolutionDir)Dependencies\glfw-x64\lib-vc2019\glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>.\src\Vendor\opencl_nvidia\lib;$(SolutionDir)Dependencies\glew2.1.0\GLEW_x64;$(SolutionDir)Dependencies\glfw-x64\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>.\src\Vendor\opencl_nvidia\lib\OpenCL.lib;$(SolutionDir)Dependencies\glew2.1.0\GLEW_x64\glew32s.lib;$(SolutionDir)Dependencies\glfw-x64\lib-vc2019\glfw3.lib;$(SolutionDir)Dependencies\clFFT-Full-2.12.2-Windows-x64\lib64\import\clFFT.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\src\Vendor\opencl_nvidia\lib;$(SolutionDir)Dependencies\glew2.1.0\GLEW_x64;$(SolutionDir)Dependencies\glfw-x64\lib-vc2019;$(SolutionDir)Dependencies\clFFT-Full-2.12.2-Windows-x64\lib64\import;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -169,6 +169,10 @@
     </QtUic>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Compute\SimulationObjects\SpatialGrid.cpp" />
+    <ClCompile Include="src\Compute\Simulations\NBodySimPM.cpp" />
+    <ClCompile Include="src\Compute\SimulationObjects\Cell.cpp" />
+    <ClCompile Include="src\Compute\SimulationObjects\GravMass.cpp" />
     <ClCompile Include="src\Graphics\GUI Components\QtGui\UtilityWidgets\PropertyItem.cpp" />
     <ClCompile Include="src\Graphics\GUI Components\QtGui\UtilityWidgets\PropertyGroupItem.cpp" />
     <ClCompile Include="src\Compute\ComputeLayer.cpp" />
@@ -211,6 +215,10 @@
   <ItemGroup>
     <QtMoc Include="src\Graphics\GUI Components\QtGui\MainWindow\MainWindow.h" />
     <QtMoc Include="src\Graphics\GUI Components\QtGui\OpenGlWidget\OpenGlWidget.h" />
+    <ClInclude Include="src\Compute\SimulationObjects\SpatialGrid.h" />
+    <ClInclude Include="src\Compute\Simulations\NBodySimPM.h" />
+    <ClInclude Include="src\Compute\SimulationObjects\Cell.h" />
+    <ClInclude Include="src\Compute\SimulationObjects\GravMass.h" />
     <ClInclude Include="src\Graphics\GUI Components\QtGui\UtilityWidgets\PropertyItem.h" />
     <ClInclude Include="src\Graphics\GUI Components\QtGui\UtilityWidgets\PropertyGroupItem.h" />
     <ClInclude Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GravObjItem.h" />
@@ -255,7 +263,6 @@
     <ClInclude Include="src\Event\KeyEvents.h" />
     <ClInclude Include="src\Layers\Layer.h" />
     <ClInclude Include="src\IO\Logger.h" />
-    <ClInclude Include="src\Utility\algorithmUtil.h" />
     <ClInclude Include="src\Utility\Math\Bits.h" />
     <ClInclude Include="src\Utility\Math\MVec.h" />
     <ClInclude Include="src\Event\MouseEventHandlers.h" />
@@ -292,6 +299,8 @@
     <None Include="cpp.hint" />
     <None Include="docs\index.rst" />
     <None Include="Main.cpp.old" />
+    <None Include="src\Compute\Kernels\PhysKernel.cl" />
+    <None Include="src\Compute\Kernels\PMgravkernel.cl" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="src\Graphics\GUI Components\QtGui\OpenGlWidget\OpenGlWidget.ui" />

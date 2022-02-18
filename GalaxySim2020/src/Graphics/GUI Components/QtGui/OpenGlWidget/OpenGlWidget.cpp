@@ -42,32 +42,29 @@ namespace QUI{
 	{
 		if (gTimeStep < m_numTimeSteps )
 		{
-				/* Render here */
-			if ( (timer.nsecsElapsed()/1E-9) >= 1.0f / 60.0f )
-			{
-				glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-				if(!isPaused || m_lastTimeStep.empty()){
-				//tempary solution to slow producer problem
-					do{
-					m_lastTimeStep = (rFile->getTimeStep ());
-					}while(m_lastTimeStep.empty());
-					for ( int j = 0; j < m_numStars; j++ )
-					{
-						m_renderer->addPoint ((glm::vec3&)m_lastTimeStep[j]);
-					}
-					gTimeStep++;
-				}
-				else
+			/* Render here */
+			glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			if((!isPaused && (timer.nsecsElapsed () / 1E9 ) >= 1.0f / 60.0f) || m_lastTimeStep.empty()){
+			//tempary solution to slow producer problem
+				do{
+				m_lastTimeStep = (rFile->getTimeStep ());
+				}while(m_lastTimeStep.empty());
+				for ( int j = 0; j < m_numStars; j++ )
 				{
-					for ( int j = 0; j < m_numStars; j++ )
-					{
-						m_renderer->addPoint ((glm::vec3& )m_lastTimeStep[j]);
-					}
+					m_renderer->addPoint ((glm::vec3&)m_lastTimeStep[j]);
 				}
-				m_renderer->render ();
-				update();
-				timer.restart();
+				gTimeStep++;
+				timer.restart ();
 			}
+			else
+			{
+				for ( int j = 0; j < m_numStars; j++ )
+				{
+					m_renderer->addPoint ((glm::vec3& )m_lastTimeStep[j]);
+				}
+			}
+			m_renderer->render ();
+			update();
 		}
 	}
 	void CustomOpenGlWidget::resizeGL (int w, int h)

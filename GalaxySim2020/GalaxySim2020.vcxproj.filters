@@ -146,6 +146,18 @@
     <ClCompile Include="src\Graphics\GUI Components\QtGui\UtilityWidgets\PropertyItem.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Compute\SimulationObjects\Cell.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Compute\SimulationObjects\GravMass.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Compute\Simulations\NBodySimPM.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Compute\SimulationObjects\SpatialGrid.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Graphics\Renderers\BatchRenderer.h">
@@ -307,9 +319,6 @@
     <ClInclude Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GravObjItem.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utility\algorithmUtil.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Graphics\GUI Components\QtGui\SimulationWidget\SubWidgets\GalaxyItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -317,6 +326,18 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Graphics\GUI Components\QtGui\UtilityWidgets\PropertyItem.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Compute\SimulationObjects\Cell.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Compute\SimulationObjects\GravMass.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Compute\Simulations\NBodySimPM.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Compute\SimulationObjects\SpatialGrid.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -330,6 +351,8 @@
     <None Include="Main.cpp.old" />
     <None Include="cpp.hint" />
     <None Include="docs\index.rst" />
+    <None Include="src\Compute\Kernels\PMgravkernel.cl" />
+    <None Include="src\Compute\Kernels\PhysKernel.cl" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="src\Graphics\GUI Components\QtGui\MainWindow\MainWindow.h">

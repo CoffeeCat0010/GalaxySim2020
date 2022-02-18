@@ -20,5 +20,6 @@ namespace Compute
 			clReleaseCommandQueue(queue);
 		}
 		const cl_command_queue getQueue() const {return queue;}
+		cl_command_queue* getQueuePtr () { return &queue; }
 	};
 }
