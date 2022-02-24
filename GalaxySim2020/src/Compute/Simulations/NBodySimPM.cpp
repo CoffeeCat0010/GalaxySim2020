@@ -81,7 +81,9 @@ namespace Compute
 			clfftSetLayout(m_clfft_handle, CLFFT_COMPLEX_PLANAR, CLFFT_COMPLEX_PLANAR);
 			clfftSetResultLocation(m_clfft_handle, CLFFT_INPLACE);
 			clfftSetPlanScale(m_clfft_handle, CLFFT_FORWARD, scale_3);
-			clfftSetPlanScale (m_clfft_handle, CLFFT_BACKWARD,  scale_3/(scale_3 * scale_3));
+			//clfftSetPlanScale (m_clfft_handle, CLFFT_FORWARD, sqrt(scale_3));
+			clfftSetPlanScale (m_clfft_handle, CLFFT_BACKWARD,  1/(scale_3 * scale_3));
+			//clfftSetPlanScale (m_clfft_handle, CLFFT_BACKWARD,  scale_3/(scale_3 * scale_3));
 			clfftBakePlan(m_clfft_handle, 1, p_cmdq->getQueuePtr(), NULL, NULL);
 			float cellDim = p_grid->getCellDim ();
 		

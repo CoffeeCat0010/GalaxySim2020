@@ -68,25 +68,25 @@ namespace QUI{
 
 
 		/* Start Temp Code */
-		int numStars = 49152/ 2;
-		Physics::Galaxy galaxy1 (numStars , cl_float3{ 5000.0f, 3000.0f, 3000.0f }, glm::vec3 (0.0f, 0.0f, 0.0f), glm::vec3 (0.0f, 0.0f, 0.0f), 2000.f, 150000000.f);
+		int numStars = 49152;
+		//Physics::Galaxy galaxy1 (numStars , cl_float3{ 5000.0f, 3000.0f, 3000.0f }, glm::vec3 (0.0f, 0.0f, 0.0f), glm::vec3 (0.0f, 0.0f, 0.0f), 2000.f, 150000000.f);
 		//Physics::Galaxy galaxy2 (numStars/2 , cl_float3 {5000.0f, 7000.0f, 3000.0f }, glm::vec3 (0.0f, 0.5f, 0.0f), glm::vec3 (0.0f, 0.0f, 0.0f), 2000.f, 150000000.f);
 		int gridCellsPerDim = 256;
 		float spatialSize = 15000.0; //parsecs
 		std::vector<Compute::GravMass> masses;
-		for ( int i = 0; i < galaxy1.getStarPos ().size (); ++i )
+		/*for ( int i = 0; i < galaxy1.getStarPos ().size (); ++i )
 		{
 			masses.push_back({Util::cl_float3ToVec3f (galaxy1.getStarPos ().at (i)),
 												Util::cl_float3ToVec3f (galaxy1.getStarVelocities ().at (i)),
 												galaxy1.getStarMasses ().at (i) });
-		}
+		}*/
 		/*for ( int i = 0; i < galaxy2.getStarPos ().size (); ++i )
 		{
 			masses.push_back ({ Util::cl_float3ToVec3f (galaxy2.getStarPos ().at (i)),
 												Util::cl_float3ToVec3f (galaxy2.getStarVelocities ().at (i)),
 												galaxy2.getStarMasses ().at (i) });
 		}*/
-		/*for ( int i = 0; i < numStars; ++i )
+		for ( int i = 0; i < numStars; ++i )
 		{
 			float x = (float)(rand()%5000 + 2000);
 			float y = (float)(rand()%5000 + 2000);
@@ -95,7 +95,7 @@ namespace QUI{
 			masses.push_back ({{x, y, z },
 												{0.f, 0.f, 0.f},
 												5.0f});
-		}*/
+		}
 		//
 		std::vector<Compute::GravMass> darkMasses = std::vector<Compute::GravMass>();
 		p_grid = new Compute::SpatialGrid(spatialSize/gridCellsPerDim, gridCellsPerDim,
@@ -111,7 +111,7 @@ namespace QUI{
 			scrollBoxLayout->removeWidget (p_progress);
 		}
 
-		float timeStepLength = 75000 * 3.154e+07; // 75,000 years in seconds
+		float timeStepLength = 75000* 3 * 3.154e+07; // 75,000 years in seconds
 		p_sim = std::make_shared<Compute::NBodySimPM> (numStars, timeStepLength, timeSteps,  FilePath->text ().toStdString (),
 																								p_grid, p_con, p_device);
 		p_sim->run ();
